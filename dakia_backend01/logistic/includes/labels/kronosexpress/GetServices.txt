@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<soap:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
+  <soap:Header>
+    <AuthHeader xmlns="https://services.kronosexpress.com/EshopWS">
+      <UserName>@username</UserName>
+      <Password>@password</Password>
+      <Hash></Hash>
+    </AuthHeader>
+  </soap:Header>
+  <soap:Body>
+    <GetServices xmlns="https://services.kronosexpress.com/EshopWS" />
+  </soap:Body>
+</soap:Envelope>

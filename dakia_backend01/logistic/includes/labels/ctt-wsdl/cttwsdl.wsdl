@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="utf-8" ?>  
+<wsdl:definitions xmlns:s="http://www.w3.org/2001/XMLSchema" 
+                  xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" 
+                  xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" 
+                  xmlns:tns="http://CTTExpresso/EventosWS/" 
+                  xmlns:s1="http://microsoft.com/wsdl/types/" 
+                  xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" 
+                  xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" 
+                  xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" 
+                  xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" 
+                  targetNamespace="http://CTTExpresso/EventosWS/" 
+                  xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"> 
+    <wsdl:types> 
+        <s:schema elementFormDefault="qualified" targetNamespace="http://CTTExpresso/EventosWS/">   
+            <s:import namespace="http://microsoft.com/wsdl/types/" />  
+            <s:element name="GetEventosObjectos"> 
+                <s:complexType> 
+                    <s:sequence>   
+                        <s:element minOccurs="1" maxOccurs="1" name="ID" type="s1:guid" />    
+                        <s:element minOccurs="0" maxOccurs="1" name="NObjectos" type="tns:ArrayOfString" />    
+                        </s:sequence>   
+                </s:complexType>   
+            </s:element> 
+            
+            <s:complexType name="ArrayOfString"> 
+                <s:sequence>   
+                    <s:element minOccurs="0" maxOccurs="unbounded" name="string" nillable="true" type="s:string" />    
+                </s:sequence>   
+            </s:complexType> 
+            <s:element name="GetEventosObjectosResponse"> 
+                <s:complexType>
+                    <s:sequence>   
+                        <s:element minOccurs="0" maxOccurs="1" name="GetEventosObjectosResult" type="tns:DadosEventosReturn" />    
+                    </s:sequence>   
+                </s:complexType>   
+            </s:element>
+            <s:complexType name="DadosEventosReturn">
+                <s:sequence>   
+                    <s:element minOccurs="0" maxOccurs="1" name="Erros" type="tns:ArrayOfString" />    
+                    <s:element minOccurs="0" maxOccurs="1" name="Objectos" type="tns:ArrayOfDadosObjectosBE" />    
+                </s:sequence>   
+            </s:complexType> 
+            <s:complexType name="ArrayOfDadosObjectosBE"> 
+            <s:sequence>   
+                <s:element minOccurs="0" maxOccurs="unbounded" name="DadosObjectosBE" nillable="true" type="tns:DadosObjectosBE" />    
+            </s:sequence>   
+            </s:complexType>
+            <s:complexType name="DadosObjectosBE">
+                <s:sequence>   
+                    <s:element minOccurs="0" maxOccurs="1" name="NObjecto" type="s:string" />    
+                    <s:element minOccurs="0" maxOccurs="1" name="NRelable" type="s:string" />    
+                    <s:element minOccurs="0" maxOccurs="1" name="NRemessa" type="s:string" />    
+                    <s:element minOccurs="0" maxOccurs="1" name="DataCriacao" type="s:string" />    
+                    <s:element minOccurs="0" maxOccurs="1" name="Eventos" type="tns:ArrayOfDadosEventosBE" />    
+                </s:sequence>   
+            </s:complexType>
+            <s:complexType name="ArrayOfDadosEventosBE"> 
+                <s:sequence>   
+                    <s:element minOccurs="0" maxOccurs="unbounded" name="DadosEventosBE" nillable="true" type="tns:DadosEventosBE" />    
+                </s:sequence>   
+            </s:complexType> 
+            <s:complexType name="DadosEventosBE">
+                <s:sequence>   
+                    <s:element minOccurs="0" maxOccurs="1" name="CodigoEvento" type="s:string" />    
+                    <s:element minOccurs="0" maxOccurs="1" name="DescricaoEvento" type="s:string" />    
+                    <s:element minOccurs="0" maxOccurs="1" name="DataEvento" type="s:string" />    
+                    <s:element minOccurs="0" maxOccurs="1" name="CodigoNoEvento" type="s:string" />    
+                    <s:element minOccurs="0" maxOccurs="1" name="DescricaoNoEvento" type="s:string" />    
+                    <s:element minOccurs="0" maxOccurs="1" name="NomeReceptor" type="s:string" />    
+                    <s:element minOccurs="0" maxOccurs="1" name="CodigoMotivo" type="s:string" />    
+                    <s:element minOccurs="0" maxOccurs="1" name="CodigoSituacao" type="s:string" />    
+                    <s:element minOccurs="0" maxOccurs="1" name="DescricaoSituacao" type="s:string" />    
+                    <s:element minOccurs="0" maxOccurs="1" name="Valido" type="s:string" />    
+                    <s:element minOccurs="1" maxOccurs="1" name="Ordem" type="s:int" />    
+                </s:sequence>   
+            </s:complexType>
+            <s:element name="GetEstadoObjecto">
+                <s:complexType> 
+                    <s:sequence>   
+                        <s:element minOccurs="1" maxOccurs="1" name="ID" type="s1:guid" />    
+                        <s:element minOccurs="0" maxOccurs="1" name="NObjecto" type="s:string" />    
+                        </s:sequence>   
+                </s:complexType>   
+            </s:element>
+            <s:element name="GetEstadoObjectoResponse">
+                <s:complexType> 
+                    <s:sequence> 
+                    <s:element minOccurs="0" maxOccurs="1" name="GetEstadoObjectoResult" type="tns:DadosEventosReturn" />    
+                    </s:sequence>   
+                </s:complexType>  
+            </s:element>   
+        </s:schema>
+        <s:schema elementFormDefault="qualified" targetNamespace="http://microsoft.com/wsdl/types/"> 
+        <s:simpleType name="guid"> 
+            <s:restriction base="s:string">   
+                <s:pattern value="[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}" />    
+            </s:restriction>   
+        </s:simpleType>   
+        </s:schema>   
+    </wsdl:types> 
+    <wsdl:message name="GetEventosObjectosSoapIn">   
+        <wsdl:part name="parameters" element="tns:GetEventosObjectos" />
+    </wsdl:message>
+    <wsdl:message name="GetEventosObjectosSoapOut">
+        <wsdl:part name="parameters" element="tns:GetEventosObjectosResponse" />
+    </wsdl:message>
+    <wsdl:message name="GetEstadoObjectoSoapIn">
+        <wsdl:part name="parameters" element="tns:GetEstadoObjecto" />
+    </wsdl:message>
+    <wsdl:message name="GetEstadoObjectoSoapOut">
+        <wsdl:part name="parameters" element="tns:GetEstadoObjectoResponse" />
+    </wsdl:message>
+    <wsdl:portType name="EventosWSSoap">
+    <wsdl:operation name="GetEventosObjectos">
+        <wsdl:input message="tns:GetEventosObjectosSoapIn" />
+        <wsdl:output message="tns:GetEventosObjectosSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetEstadoObjecto">
+        <wsdl:input message="tns:GetEstadoObjectoSoapIn" />
+        <wsdl:output message="tns:GetEstadoObjectoSoapOut" />
+    </wsdl:operation>
+    </wsdl:portType>
+    <wsdl:binding name="EventosWSSoap" type="tns:EventosWSSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetEventosObjectos">
+    <soap:operation soapAction="http://CTTExpresso/EventosWS/GetEventosObjectos" style="document" />
+    <wsdl:input>
+        <soap:body use="literal" />
+    </wsdl:input>
+    <wsdl:output> 
+    <soap:body use="literal" />    
+    </wsdl:output>   
+    </wsdl:operation>
+    <wsdl:operation name="GetEstadoObjecto">
+    <soap:operation soapAction="http://CTTExpresso/EventosWS/GetEstadoObjecto" style="document" />
+    <wsdl:input>
+        <soap:body use="literal" />
+    </wsdl:input>
+    <wsdl:output>
+        <soap:body use="literal" />
+    </wsdl:output>
+    </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:binding name="EventosWSSoap12" type="tns:EventosWSSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetEventosObjectos">
+    <soap12:operation soapAction="http://CTTExpresso/EventosWS/GetEventosObjectos" style="document" />
+    <wsdl:input>
+        <soap12:body use="literal" />
+    </wsdl:input>
+    <wsdl:output>
+        <soap12:body use="literal" />
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetEstadoObjecto">
+    <soap12:operation soapAction="http://CTTExpresso/EventosWS/GetEstadoObjecto" style="document" />
+    <wsdl:input>
+        <soap12:body use="literal" />
+    </wsdl:input>
+    <wsdl:output>
+        <soap12:body use="literal" />
+    </wsdl:output>
+    </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:service name="EventosWS">
+    <wsdl:port name="EventosWSSoap" binding="tns:EventosWSSoap">
+    <soap:address location="http://cplin4t006-1/cttexpressoWS/EventosWS.asmx" />
+    </wsdl:port>
+    <wsdl:port name="EventosWSSoap12" binding="tns:EventosWSSoap12">
+    <soap12:address location="http://cplin4t006-1/cttexpressoWS/EventosWS.asmx" />
+    </wsdl:port>
+    </wsdl:service>
+</wsdl:definitions> 

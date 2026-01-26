@@ -1,0 +1,201 @@
+[
+   {
+      "sender_country_iso":"US",
+      "service_code":"150", // service_code should contain STOWEMFNP 
+      "order_reference":"1Z1EF1649000329554",
+	  "tracking_number":"1Z1EF1649000329554", // tracking number can be same or different as order reference number
+      "sender_contact":"", // sender_contact cannot be null or blank, sender_contact can be same as sender_name
+      "sender_email":"",
+      "sender_company":"",
+      "sender_name":"Amazon MFN",
+      "sender_address_line_1":"333 Boren Avenue North ",
+      "sender_address_line_2":"Attention: Transport Fina",
+      "sender_address_line_3":"",
+      "sender_city":"Seattle ",
+      "sender_state":"WA",
+      "sender_postcode":"98109",
+      "sender_telephone":"",
+      "receiver_country_iso":"JP",
+      "receiver_contact":"", // receiver_contact cannot be null or blank 
+      "receiver_email":"kmzstyk1107@yahoo.co.jp",
+      "receiver_company":"",
+      "receiver_telephone":"09095892587",
+      "receiver_address_line_1":"333 Boren Avenue North ",
+      "receiver_address_line_2":"",
+      "receiver_address_line_3":"",
+      "receiver_city":"CHUO-KU, FUKUOKA-SHI",
+      "receiver_state":"FU",
+      "receiver_postcode":"8100033",
+      "value":"81.65",
+      "currency":"USD",
+      "itemyype":"",
+      "notes":"",
+      "description":"", // description cannot be null or blank  you can but shoes in here in belwo case
+      "parcel":[
+         {
+			"tracking_number":"1Z1EF1649000329554", // tracking number can be same or different as order reference number
+            "weight":"0",
+            "length":"0",
+            "width":"0",
+            "height":"0",
+            "items":[
+               {
+                  "item_description":"shoes - Cole Haan Women\u0027s Grandpro Tennis Sneaker, Riverside, 9 B US",
+                  "no_of_items":"1",
+                  "item_value":"23.78",
+                  "weight":"1.03",
+                  "tariff_no":"B073RV34WW",
+                  "hscode":"640411000",
+                  "manufacture_country_iso":"CN"
+               },
+               {
+                  "item_description":"shoes - Cole Haan Women\u0027s TALI Mini Bow Studded Sandal, Black Patent, 9 B US",
+                  "no_of_items":"1",
+                  "item_value":"25.6",
+                  "weight":"1.03",
+                  "tariff_no":"B074BZ5DR3",
+                  "hscode":"640419290",
+                  "manufacture_country_iso":"CN"
+               },
+               {
+                  "item_description":"shoes - Cole Haan Women\u0027s TALI Mini Bow Studded Sandal, koi Patent, 7 B US",
+                  "no_of_items":"1",
+                  "item_value":"32.27",
+                  "weight":"1.03",
+                  "tariff_no":"B074BYYYFB",
+                  "hscode":"640419290",
+                  "manufacture_country_iso":"CN"
+               }
+            ]
+         }
+      ],
+      "shipment_type":"D",
+      "collection_end_time":"00:00",
+      "collection_start_time":"00:00",
+      "collection_date":"16-03-2020"
+   },
+   {
+      "sender_country_iso":"US",
+      "service_code":"150", // service_code should contain STOWEMFNP 
+      "order_reference":"1Z1EF1649000331461",
+	  "tracking_number":"1Z1EF1649000331461", // tracking number can be same or different as order reference number
+      "sender_contact":"", // sender_contact cannot be null or blank, sender_contact can be same as sender_name
+      "sender_email":"",
+      "sender_company":"",
+      "sender_name":"Amazon MFN",
+      "sender_address_line_1":"333 Boren Avenue North ",
+      "sender_address_line_2":"Attention: Transport Fina",
+      "sender_address_line_3":"",
+      "sender_city":"Seattle ",
+      "sender_state":"WA",
+      "sender_postcode":"98109",
+      "sender_telephone":"",
+      "receiver_country_iso":"AE",
+      "receiver_contact":"", // receiver_contact cannot be null or blank 
+      "receiver_email":"ntp@artabroch.com",
+      "receiver_company":"",
+      "receiver_telephone":"971585851790",
+      "receiver_address_line_1":"333 Boren Avenue North ",
+      "receiver_address_line_2":"Attention: Transport Fina",
+      "receiver_address_line_3":"",
+      "receiver_city":"Dubai",
+      "receiver_state":"",
+      "receiver_postcode":"",
+      "value":"104",
+      "currency":"USD",
+      "itemyype":"",
+      "notes":"",
+      "description":"", // description cannot be null or blank  you can but shoes in here in belwo case
+      "parcel":[
+         {
+			"tracking_number":"1Z1EF1649000331461", // tracking number can be same or different as order reference number
+            "weight":"0",
+            "length":"0",
+            "width":"0",
+            "height":"0",
+            "items":[
+               {
+                  "item_description":"shoes - Nike Mens AQ5707-003 Fabric Low Top Lace Up Running Sneaker, Blue, Size 9.5",
+                  "no_of_items":"1",
+                  "item_value":"104",
+                  "weight":"1.03",
+                  "tariff_no":"B07H9716H7",
+                  "hscode":"64041100",
+                  "manufacture_country_iso":"CN"
+               }
+            ]
+         }
+      ],
+      "shipment_type":"D",
+      "collection_end_time":"00:00",
+      "collection_start_time":"00:00",
+      "collection_date":"16-03-2020"
+   },
+   {
+      "sender_country_iso":"US",
+      "service_code":"150", // service_code should contain STOWEMFNP 
+      "order_reference":"1Z1EF1649000331363",
+	  "tracking_number":"1Z1EF1649000331363", // tracking number can be same or different as order reference number
+      "sender_contact":"", // sender_contact cannot be null or blank, sender_contact can be same as sender_name
+      "sender_contact":"",
+      "sender_email":"",
+      "sender_company":"",
+      "sender_name":"Amazon MFN",
+      "sender_address_line_1":"333 Boren Avenue North ",
+      "sender_address_line_2":"Attention: Transport Fina",
+      "sender_address_line_3":"",
+      "sender_city":"Seattle ",
+      "sender_state":"WA",
+      "sender_postcode":"98109",
+      "sender_telephone":"",
+      "receiver_country_iso":"JP",
+      "receiver_contact":"", // receiver_contact cannot be null or blank 
+      "receiver_email":"ooaaoor@gmail.com",
+      "receiver_company":"",
+      "receiver_telephone":"81222479593",
+      "receiver_address_line_1":"333 Boren Avenue North ",
+      "receiver_address_line_2":"Attention: Transport Fina",
+      "receiver_address_line_3":"",
+      "receiver_city":"Sendai",
+      "receiver_state":"MI",
+      "receiver_postcode":"9820004",
+      "value":"260.32",
+      "currency":"USD",
+      "itemyype":"",
+      "notes":"",
+      "description":"", // description cannot be null or blank  you can but shoes in here in belwo case
+      "parcel":[
+         {
+			"tracking_number":"1Z1EF1649000331363", // tracking number can be same or different as order reference number
+            "weight":"0",
+            "length":"0",
+            "width":"0",
+            "height":"0",
+            "items":[
+               {
+                  "item_description":"shoes - New Balance MIUSA 996 M Silver",
+                  "no_of_items":"3",
+                  "item_value":"172.59",
+                  "weight":"6.03",
+                  "tariff_no":"B0797B4LZX",
+                  "hscode":"640411000",
+                  "manufacture_country_iso":"CN"
+               },
+               {
+                  "item_description":"shoes - New Balance MIUSA 996 FTWR Black",
+                  "no_of_items":"1",
+                  "item_value":"87.73",
+                  "weight":"1.99",
+                  "tariff_no":"B07521PGQB",
+                  "hscode":"420310200",
+                  "manufacture_country_iso":"CN"
+               }
+            ]
+         }
+      ],
+      "shipment_type":"D",
+      "collection_end_time":"00:00",
+      "collection_start_time":"00:00",
+      "collection_date":"16-03-2020"
+   }
+]

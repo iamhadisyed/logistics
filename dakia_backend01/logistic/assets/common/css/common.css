@@ -1,0 +1,763 @@
+div.bootstrap-select.input-sm > button{
+    padding-top: 4px;
+    padding-bottom: 4px;
+}
+
+/*******************Css Loader css stert***********/
+#smartloader{
+    display: none;
+}
+.cssload-preloader {
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    right: 0px;
+    bottom: 0px;
+    z-index: 999999;
+    height: 50px;
+}
+
+.cssload-preloader > .cssload-preloader-box {
+    position: fixed;
+    height: 29px;
+    top: 50%;
+    left: 50%;
+    margin: -15px 0 0 -146px;
+    perspective: 195px;
+    -o-perspective: 195px;
+    -ms-perspective: 195px;
+    -webkit-perspective: 195px;
+    -moz-perspective: 195px;
+}
+
+.cssload-preloader .cssload-preloader-box > div {
+    position: relative;
+    width: 29px;
+    height: 29px;
+    background: rgb(204,204,204);
+    float: left;
+    text-align: center;
+    line-height: 29px;
+    font-family: Verdana;
+    font-size: 19px;
+    color: rgb(255,255,255);
+}.cssload-preloader .cssload-preloader-box > div:nth-child(1) {
+     background: rgb(51,102,255);
+     margin-right: 15px;
+     animation: cssload-movement 690ms ease 0ms infinite alternate;
+     -o-animation: cssload-movement 690ms ease 0ms infinite alternate;
+     -ms-animation: cssload-movement 690ms ease 0ms infinite alternate;
+     -webkit-animation: cssload-movement 690ms ease 0ms infinite alternate;
+     -moz-animation: cssload-movement 690ms ease 0ms infinite alternate;
+ }
+.cssload-preloader .cssload-preloader-box > div:nth-child(2) {
+    background: rgb(51,102,255);
+    margin-right: 15px;
+    animation: cssload-movement 690ms ease 86.25ms infinite alternate;
+    -o-animation: cssload-movement 690ms ease 86.25ms infinite alternate;
+    -ms-animation: cssload-movement 690ms ease 86.25ms infinite alternate;
+    -webkit-animation: cssload-movement 690ms ease 86.25ms infinite alternate;
+    -moz-animation: cssload-movement 690ms ease 86.25ms infinite alternate;
+}
+.cssload-preloader .cssload-preloader-box > div:nth-child(3) {
+    background: rgb(51,102,255);
+    margin-right: 15px;
+    animation: cssload-movement 690ms ease 172.5ms infinite alternate;
+    -o-animation: cssload-movement 690ms ease 172.5ms infinite alternate;
+    -ms-animation: cssload-movement 690ms ease 172.5ms infinite alternate;
+    -webkit-animation: cssload-movement 690ms ease 172.5ms infinite alternate;
+    -moz-animation: cssload-movement 690ms ease 172.5ms infinite alternate;
+}
+.cssload-preloader .cssload-preloader-box > div:nth-child(4) {
+    background: rgb(51,102,255);
+    margin-right: 15px;
+    animation: cssload-movement 690ms ease 258.75ms infinite alternate;
+    -o-animation: cssload-movement 690ms ease 258.75ms infinite alternate;
+    -ms-animation: cssload-movement 690ms ease 258.75ms infinite alternate;
+    -webkit-animation: cssload-movement 690ms ease 258.75ms infinite alternate;
+    -moz-animation: cssload-movement 690ms ease 258.75ms infinite alternate;
+}
+.cssload-preloader .cssload-preloader-box > div:nth-child(5) {
+    background: rgb(51,102,255);
+    margin-right: 15px;
+    animation: cssload-movement 690ms ease 345ms infinite alternate;
+    -o-animation: cssload-movement 690ms ease 345ms infinite alternate;
+    -ms-animation: cssload-movement 690ms ease 345ms infinite alternate;
+    -webkit-animation: cssload-movement 690ms ease 345ms infinite alternate;
+    -moz-animation: cssload-movement 690ms ease 345ms infinite alternate;
+}
+.cssload-preloader .cssload-preloader-box > div:nth-child(6) {
+    background: rgb(51,102,255);
+    margin-right: 15px;
+    animation: cssload-movement 690ms ease 431.25ms infinite alternate;
+    -o-animation: cssload-movement 690ms ease 431.25ms infinite alternate;
+    -ms-animation: cssload-movement 690ms ease 431.25ms infinite alternate;
+    -webkit-animation: cssload-movement 690ms ease 431.25ms infinite alternate;
+    -moz-animation: cssload-movement 690ms ease 431.25ms infinite alternate;
+}
+.cssload-preloader .cssload-preloader-box > div:nth-child(7) {
+    background: rgb(51,102,255);
+    margin-right: 15px;
+    animation: cssload-movement 690ms ease 517.5ms infinite alternate;
+    -o-animation: cssload-movement 690ms ease 517.5ms infinite alternate;
+    -ms-animation: cssload-movement 690ms ease 517.5ms infinite alternate;
+    -webkit-animation: cssload-movement 690ms ease 517.5ms infinite alternate;
+    -moz-animation: cssload-movement 690ms ease 517.5ms infinite alternate;
+}
+.cssload-preloader .cssload-preloader-box > div:nth-child(8) {
+    background: #3366FF;
+    margin-right: 15px;
+    animation: cssload-movement 690ms ease 603.75ms infinite alternate;
+    -o-animation: cssload-movement 690ms ease 603.75ms infinite alternate;
+    -ms-animation: cssload-movement 690ms ease 603.75ms infinite alternate;
+    -webkit-animation: cssload-movement 690ms ease 603.75ms infinite alternate;
+    -moz-animation: cssload-movement 690ms ease 603.75ms infinite alternate;
+}
+.margin-top-25{
+    margin-top: 25px;
+}
+.margin-top-30{
+    margin-top: 30px;
+}
+.float-left{
+    float: left;
+}
+.float-right{
+    float: right;
+}
+
+@keyframes cssload-movement {
+    from {
+        transform: scale(1.0) translateY(0px) rotateX(0deg);
+        box-shadow: 0 0 0 rgba(0,0,0,0);
+    }
+    to {
+        transform: scale(1.5) translateY(-24px) rotateX(45deg);
+        box-shadow: 0 24px 39px rgba(0,0,0,0.4);
+        background: #3399FF;
+    }
+}
+
+@-o-keyframes cssload-movement {
+    from {
+        -o-transform: scale(1.0) translateY(0px) rotateX(0deg);
+        box-shadow: 0 0 0 rgba(0,0,0,0);
+    }
+    to {
+        -o-transform: scale(1.5) translateY(-24px) rotateX(45deg);
+        box-shadow: 0 24px 39px rgba(0,0,0,0.4);
+        background: #3399FF;
+    }
+}
+
+@-ms-keyframes cssload-movement {
+    from {
+        -ms-transform: scale(1.0) translateY(0px) rotateX(0deg);
+        box-shadow: 0 0 0 rgba(0,0,0,0);
+    }
+    to {
+        -ms-transform: scale(1.5) translateY(-24px) rotateX(45deg);
+        box-shadow: 0 24px 39px rgba(0,0,0,0.4);
+        background: #3399FF;
+    }
+}
+
+@-webkit-keyframes cssload-movement {
+    from {
+        -webkit-transform: scale(1.0) translateY(0px) rotateX(0deg);
+        box-shadow: 0 0 0 rgba(0,0,0,0);
+    }
+    to {
+        -webkit-transform: scale(1.5) translateY(-24px) rotateX(45deg);
+        box-shadow: 0 24px 39px rgba(0,0,0,0.4);
+        background: #3399FF;
+    }
+}
+
+@-moz-keyframes cssload-movement {
+    from {
+        -moz-transform: scale(1.0) translateY(0px) rotateX(0deg);
+        box-shadow: 0 0 0 rgba(0,0,0,0);
+    }
+    to {
+        -moz-transform: scale(1.5) translateY(-24px) rotateX(45deg);
+        box-shadow: 0 24px 39px rgba(0,0,0,0.4);
+        background: #3399FF;
+    }
+}
+/*******************Css Loader css end***********/
+/*----------------------------------------------------------------*/
+/************** Ajax Terminal Css Start Here **********************/
+.export-excel-msg {
+    background: #000;
+    font-family: "open_sansregular", arial, sans-serif;
+    font-size: 12px;
+    left: 50%;
+    color: #fff;
+    line-height: 1.1;
+    min-width: 500px;
+    position: fixed;
+    padding: 20px 0;
+    border-radius: 5px 0 5px 5px;
+    border: 3px solid #cdcdcd;
+    top: 50%;
+    z-index: -9999;
+    visibility: hidden;
+    margin: -120px 0 0 -250px;
+}
+.export-excel-msg strong{
+    font-family: "open_sanssemibold", arial, sans-serif;
+}
+#wait {
+    position: absolute;
+    left: 20px;
+    bottom: 5px;
+    font-weight: 600;
+    font-size: 20px;
+}
+.export-excel-msg ul {
+    padding: 0 20px;
+    min-height: 201px;
+    overflow: hidden;
+}
+.export-excel-msg ul li{
+    margin: 0 0 10px;
+}
+.export-excel-msg .jcf-scrollable {
+    height: 200px;
+    overflow-y: scroll;
+}
+.export-excel-msg .jcf-scrollbar-vertical .jcf-scrollbar-slider{ height: 100% !important; }
+.export-excel-msg .jcf-scrollbar-vertical {
+    width: 10px;
+    height: 100% !important;
+}
+.export-excel-msg .jcf-scrollbar-dec,
+.export-excel-msg .jcf-scrollbar-inc { display: none; }
+.export-excel-msg .jcf-scrollbar-vertical .jcf-scrollbar-handle {
+    width: 6px;
+    left: 2px;
+    background: #bcbdc0;
+    border-radius: 2px;
+}
+.export-excel-msg .jcf-scrollbar-vertical { background: none; }
+.export-excel-msg .jcf-scrollable-wrapper { position: static !important; }
+.export-excel-msg .cancel {
+    cursor: pointer;
+    position: absolute;
+    right: 0;
+    bottom: 100%;
+    background: #cdcdcd;
+    border-radius: 5px 5px 0 0;
+    padding: 4px 5px 7px 27px;
+    color: #000;
+    margin: 2px -3px 0 0;
+}
+.export-excel-msg .cancel:before {
+    content: "";
+    background: url("../../../images/dropbox-cancel.png") 50% 50%;
+    cursor: pointer;
+    height: 18px;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 18px;
+    margin: 2px 0 0 4px;
+}
+/***----------- Ajax terminal Css  End  Here ----------***********/
+/*----------------------------------------------------------------*/
+
+
+
+
+
+.select2-container--bootstrap { width: 100% !important }
+
+
+
+/*.table-responsive {
+    overflow-x: visible !important;
+    overflow-y: visible !important;
+}*/
+
+.padding50 .panel-body{ padding:50px 0 !important  }
+
+ 
+
+fieldset.fsStyle {
+    font-size: small;
+    font-weight: normal;
+    border: 1px solid #ccc;
+    padding: 4px;
+    margin-bottom: 30px;
+}
+
+legend.legendStyle {
+    font-size: 90%;
+    color: #888888;
+    background-color: transparent;
+    font-weight: bold;
+    padding-left: 5px;
+    padding-right: 5px;
+    width: auto;
+    border: none;
+    margin-bottom: 0
+}  
+
+
+.smart-legend legend {
+    margin-bottom: 5px;
+    font-size: 14px;
+    font-weight: bold;
+    text-transform: uppercase;
+    border: 0px;
+}
+
+.label_new {
+    font-weight: bold !important;
+}
+fieldset {
+    margin-bottom: 20px
+ 
+}
+
+
+.unhyginic-font-increase * { font-size: 20px !important }
+
+.user_acccount_correct_button .btn-group {    position: relative !important;    margin-top: 0 !important;}
+
+.panel-body .img-wrapper .img-responsive {    max-height: 31px;}
+
+.search_carrier_custom a.btn {
+	background: #3598dc;
+	border-radius: 4px;
+	box-shadow: 0 2px 0 0 rgba(0, 0, 0, 0.25);
+	color: #ffffff;
+	display: inline-block;
+	padding: 6px 30px 8px;
+	position: relative;
+	text-decoration: none;
+	-webkit-transition: all 0.1s 0s ease-out;
+	transition: all 0.1s 0s ease-out;
+}
+
+.search_carrier_custom .no-touch a.btn:hover {
+	background: #3598dc;
+	box-shadow: 0 8px 2px 0 rgba(0, 0, 0, 0.075);
+	-webkit-transform: translateY(-2px);
+	transform: translateY(-2px);
+	-webkit-transition: all 0.25s 0s ease-out;
+	transition: all 0.25s 0s ease-out;
+}
+
+.search_carrier_custom .no-touch a.btn:active,
+a.btn:active {
+	background: #23527c;
+	box-shadow: 0 1px 0 0 rgba(255, 255, 255, 0.25);
+	-webkit-transform: translate3d(0, 1px, 0);
+	transform: translate3d(0, 1px, 0);
+	-webkit-transition: all 0.025s 0s ease-out;
+	transition: all 0.025s 0s ease-out;
+}
+
+div.cards {
+	text-align: center;
+}
+
+div.card {
+	background: #ffffff;
+
+	-webkit-perspective: 1000;
+	perspective: 1000;
+	position: relative;
+	text-align: left;
+	-webkit-transition: all 0.3s 0s ease-in;
+	transition: all 0.3s 0s ease-in;
+	z-index: 1;
+	border: 1px solid #ccc;
+	border-radius: 5px !important;
+	margin-bottom: 20px;
+}
+
+div.card img {
+	max-height: 188px;
+}
+
+div.card div.card-title {
+	background: #ffffff;
+	padding: 7px;
+	position: relative;
+	z-index: 0;
+	border-bottom-left-radius: 5px !important;
+	border-bottom-right-radius: 5px !important;
+}
+
+div.card div.card-title a.toggle-info {
+	border-radius: 32px;
+	height: 32px;
+	padding: 0;
+	position: absolute;
+	right: 15px;
+	top: 10px;
+	width: 32px;
+}
+
+div.card div.card-title a.toggle-info span {
+	background: #ffffff;
+	display: block;
+	height: 2px;
+	position: absolute;
+	top: 16px;
+	-webkit-transition: all 0.15s 0s ease-out;
+	transition: all 0.15s 0s ease-out;
+	width: 10px;
+}
+
+div.card div.card-title a.toggle-info span.left {
+	right: 14px;
+	-webkit-transform: rotate(45deg);
+	transform: rotate(45deg);
+}
+
+div.card div.card-title a.toggle-info span.right {
+	left: 13px;
+	-webkit-transform: rotate(-45deg);
+	transform: rotate(-45deg);
+}
+
+div.card div.card-title h3 {
+	font-weight: 700;
+	letter-spacing: -0.05em;
+	margin: 0;
+	padding: 0;
+	font-size: 17px;
+}
+
+div.card div.card-title h3 small {
+	display: block;
+	font-weight: 600;
+	letter-spacing: -0.025em;
+	margin-top: 6px;
+}
+
+div.card div.card-description {
+	padding: 12px 15px 0;
+	position: relative;
+	font-size: 14px;
+}
+
+div.card div.card-actions {
+	box-shadow: 0 2px 0 0 rgba(0, 0, 0, 0.075);
+	padding: 10px 15px 20px;
+	text-align: center;
+}
+
+div.card div.card-flap {
+	background: #d9d9d9;
+	position: absolute;
+	width: 100%;
+	-webkit-transform-origin: top;
+	transform-origin: top;
+	-webkit-transform: rotateX(-90deg);
+	transform: rotateX(-90deg);
+	left: 0;
+	border-left: 1px solid #ccc;
+	border-right: 1px solid #ccc;
+	border-bottom: 1px solid #ccc;
+
+	border-bottom-left-radius: 5px !important;
+	border-bottom-right-radius: 5px !important;
+}
+
+div.card div.flap1 {
+	-webkit-transition: all 0.3s 0.3s ease-out;
+	transition: all 0.3s 0.3s ease-out;
+	z-index: -1;
+}
+
+div.card div.flap2 {
+	-webkit-transition: all 0.3s 0s ease-out;
+	transition: all 0.3s 0s ease-out;
+	z-index: -2;
+}
+
+div.cards.showing div.card {
+	cursor: pointer;
+	opacity: 0.6;
+	-webkit-transform: scale(0.88);
+	transform: scale(0.88);
+}
+
+.no-touch div.cards.showing div.card:hover {
+	opacity: 0.94;
+	-webkit-transform: scale(0.92);
+	transform: scale(0.92);
+}
+
+div.card.show {
+	opacity: 1 !important;
+	-webkit-transform: scale(1) !important;
+	transform: scale(1) !important;
+}
+
+div.card.show div.card-title a.toggle-info {
+	background: #ff6666 !important;
+}
+
+div.card.show div.card-title a.toggle-info span {
+	top: 15px;
+}
+
+div.card.show div.card-title a.toggle-info span.left {
+	right: 10px;
+}
+
+div.card.show div.card-title a.toggle-info span.right {
+	left: 10px;
+}
+
+div.card.show div.card-flap {
+	background: #ffffff;
+	-webkit-transform: rotateX(0deg);
+	transform: rotateX(0deg);
+}
+
+div.card.show div.flap1 {
+	-webkit-transition: all 0.3s 0s ease-out;
+	transition: all 0.3s 0s ease-out;
+}
+
+div.card.show div.flap2 {
+	-webkit-transition: all 0.3s 0.2s ease-out;
+	transition: all 0.3s 0.2s ease-out;
+}
+.card-inner-box {
+	background-size: cover;
+	border-bottom: 1px solid #ccc;
+
+	border-top-left-radius: 5px !important;
+	border-top-right-radius: 5px !important;
+	-moz-box-shadow: inset 0 0 10px #e2e2e2;
+	-webkit-box-shadow: inset 0 0 10px #e2e2e2;
+	box-shadow: inset 0 0 10px #e2e2e2;
+	padding:10%
+
+}
+
+div.card div.card-title a.toggle-info i {
+	margin-top: 9px;
+	margin-left: 2px;
+}
+
+.manage-marketplace-card  a.toggle-info {
+	top: 9px !important;
+}
+
+.manage-marketplace-card  h3 {
+	line-height: 30px;
+	vertical-align: middle;
+}
+
+div.card div.card-title a.toggle-info2 {
+	border-radius: 32px;
+	height: 32px;
+	padding: 0;
+	position: absolute;
+	right: 50px;
+	top: 10px;
+	width: 32px;
+}
+
+div.card div.card-title a.toggle-info2 i {
+	margin-top: 9px;
+}
+.card .form-control {
+	border-color: #ccc;
+}
+
+
+.card .has-float-label input {
+	padding: 23px 10px 20px
+}
+
+.card .has-float-label label {
+	font-weight: 700
+}
+
+.help-header {
+	background: url("/images/bg-help-pages.png") no-repeat bottom center;
+	background-size: cover;
+	padding: 20px 0;
+}
+
+.help-header h2 {
+	text-shadow: 1px 1px #ffffff;
+}
+
+.help-sub-heading {
+	/* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#ffffff+0,f6f6f6+47,ededed+100;White+3D+%231 */
+	background: rgb(255,255,255); /* Old browsers */
+	background: -moz-linear-gradient(top,  rgba(255,255,255,1) 0%, rgba(246,246,246,1) 47%, rgba(237,237,237,1) 100%); /* FF3.6-15 */
+	background: -webkit-linear-gradient(top,  rgba(255,255,255,1) 0%,rgba(246,246,246,1) 47%,rgba(237,237,237,1) 100%); /* Chrome10-25,Safari5.1-6 */
+	background: linear-gradient(to bottom,  rgba(255,255,255,1) 0%,rgba(246,246,246,1) 47%,rgba(237,237,237,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#ededed',GradientType=0 ); /* IE6-9 */
+	padding:15px 0px;
+	margin-bottom: 40px; border-bottom: 1px solid #ccc;
+}
+.help-sub-heading h3 {font-weight: 700; color: #000; padding: 0; margin:0; font-size: 20px;}
+
+/*----------------------------------
+    Macbook pro mockup from:
+    http://jaredhardy.com/minimal-devices/
+
+----------------------------------*/
+
+.md-macbook-pro {
+	display: block;
+	width: 55.3125em;
+	height: 31.875em;
+	font-size: 13px;
+	margin: 0 auto;
+
+@media (max-width:1199px){
+	font-size: 11px;
+}
+@media (max-width:1024px){
+	font-size: 10px;
+}
+
+@media (max-width:767px){
+	font-size: 7px;
+}
+
+@media (max-width:320px){
+	font-size: 5px;
+}
+
+}
+.md-macbook-pro .md-lid {
+	width: 45em;
+	height: 30.625em;
+	overflow: hidden;
+	margin: 0 auto;
+	position: relative;
+	border-radius: 1.875em;
+	border: solid 0.1875em #cdced1;
+	background: #131313;
+}
+.md-macbook-pro .md-camera {
+	width: 0.375em;
+	height: 0.375em;
+	margin: 0 auto;
+	position: relative;
+	top: 1.0625em;
+	background: #000;
+	border-radius: 100%;
+	box-shadow: inset 0 -1px 0 rgba(255, 255, 255, 0.25);
+}
+.md-macbook-pro .md-camera:after {
+	content: "";
+	display: block;
+	width: 0.125em;
+	height: 0.125em;
+	position: absolute;
+	left: 0.125em;
+	top: 0.0625em;
+	background: #353542;
+	border-radius: 100%;
+}
+.md-macbook-pro .md-screen {
+	width: 42.25em;
+	height: 26.375em;
+	margin: 0 auto;
+	position: relative;
+	top: 2.0625em;
+// background: #1d1d1d;
+	background: #fff;
+	overflow: hidden;
+}
+.md-macbook-pro .md-screen img {
+	width: 100%;
+}
+.md-macbook-pro .md-base {
+	width: 100%;
+	height: 0.9375em;
+	position: relative;
+	top: -0.75em;
+	background: #c6c7ca;
+}
+.md-macbook-pro .md-base:after {
+	content: "";
+	display: block;
+	width: 100%;
+	height: 0.5em;
+	margin: 0 auto;
+	position: relative;
+	bottom: -0.1875em;
+	background: #b9babe;
+	border-radius: 0 0 1.25em 1.25em;
+}
+.md-macbook-pro .md-base:before {
+	content: "";
+	display: block;
+	width: 7.6875em;
+	height: 0.625em;
+	margin: 0 auto;
+	position: relative;
+	background: #a6a8ad;
+	border-radius: 0 0 0.625em 0.625em;
+}
+.md-macbook-pro.md-glare .md-lid:after {
+	content: "";
+	display: block;
+	width: 0%;
+	height: 100%;
+	position: absolute;
+	top: 0;
+	right: 0;
+	border-radius: 0 1.25em 0 0;
+	background: -webkit-linear-gradient(37deg, rgba(255, 255, 255, 0) 50%, rgba(247, 248, 240, 0.025) 50%, rgba(250, 245, 252, 0.08));
+	background: -moz-linear-gradient(37deg, rgba(255, 255, 255, 0) 50%, rgba(247, 248, 240, 0.025) 50%, rgba(250, 245, 252, 0.08));
+	background: -o-linear-gradient(37deg, rgba(255, 255, 255, 0) 50%, rgba(247, 248, 240, 0.025) 50%, rgba(250, 245, 252, 0.08));
+	background: linear-gradient(53deg, rgba(255, 255, 255, 0) 50%, rgba(247, 248, 240, 0.025) 50%, rgba(250, 245, 252, 0.08));
+}
+
+#zoom {
+	position: absolute;
+	display: none;
+	z-index: 9999;
+	-webkit-box-shadow: 0px 5px 25px #000;
+	-moz-box-shadow: 0px 5px 25px #000;
+	box-shadow: 0px 5px 25px #000;
+}
+#zoom_img {
+	display: block;
+	cursor: pointer;
+	width: 100%;
+	border: 0;
+	margin: 0;
+	padding: 0;
+}
+#zoom_close {
+	position: absolute;
+	display: none;
+	cursor: pointer;
+	left: -15px;
+	top: -15px;
+	width: 30px;
+	height: 30px;
+	background: url("../img/closebox.png") no-repeat;
+}
+#zoom_spin {
+	position: absolute;
+	display: none;
+	z-index: 525;
+	width: 50px;
+	height: 50px;
+	background: url("../img/spin.png") no-repeat;
+}
+
+.card-help {background: url("../img/bg-help-page.png") no-repeat center center !important; background-size:cover !important; border-radius: 0px !important;}
+
+
+div.panel-heading h4 { font-weight: 700; }

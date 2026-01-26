@@ -1,0 +1,100 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Order Confirmation</title>
+<style>
+	body 
+	{
+		margin:0px; 
+		background-color:#FFFFFF; 
+		font-family:Arial;
+		font-size: 11pt;
+	}
+	.footer
+	{
+		font-size: 0.8em;
+	}
+	table
+	{
+		border-collapse: collapse;
+	}
+	th
+	{
+		padding: 3px 6px 3px 6px;
+		border: 1px solid Gray;
+	}
+	td
+	{
+		padding: 3px 6px 3px 6px;
+		border: 1px solid Gray;
+		vertical-align: top;
+	}
+	.parcelgroup_heading
+	{
+		background-color: #CCCCCC;
+	}
+	.subheading td
+	{
+		background-color: #EEEEEE;
+		padding: 3px 6px 3px 6px;
+		clear: left;
+		border: 1px solid Grey;
+	}
+</style>
+</head>
+<body>
+
+<p>
+Dear [getcustomername]
+<br />Thank you for placing your order at Glslogistics.co.uk. Please keep this email for future reference.
+<br />
+<br />You may view the booking documentation by clicking [documentlink].	
+<br />
+<br />Please find below the details of your order:
+<br />
+<br />Order Status: Booked and Paid
+<br />Order Number: [getordernumber]
+<br />Senders Reference: [getorderreference]
+<br />Payment Reference: [getpaymentreference]
+<br />&nbsp;
+<br />
+	[bookinginfo]
+
+	<table>
+		<tr>
+			<th colspan="2">Price:</th>
+		</tr>
+		<tr>
+			<td>Parcel Delivery:</td>
+			<td align="right">[nettotal]</td>
+		</tr>
+		<tr>
+			<td>V.A.T:</td>
+			<td align="right">[vat]</td>
+		</tr>
+		<tr>
+			<td>Total:</td>
+			<td align="right">[total]</td>
+		</tr>
+	</table>
+<br />
+<br />Your order will be picked up by DHL part of the Deutsche Post Group of Companies.
+<br />
+<br />Thank you for using Glslogistics.co.uk
+<br />
+<br />Customer Service Team
+<br />02089984808
+<hr />
+</p>
+<p class="footer">
+If you have any questions regarding your order, collection, delivery details or service purchased, please contact Glslogistics.co.uk directly via details on their website Glslogisitcs.co.uk.
+<br />
+<br />If you have any queries please see our FAQs before contacting our Customer Service Team.
+<br />
+<br />Read Carefully our Terms and Conditions regarding packaging, collection and delivery at
+<a href="<? echo $BaseURL ?>"><? echo $BaseURL ?></a>.
+</p>
+
+</body>
+</html>

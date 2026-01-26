@@ -1,0 +1,417 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:soap11="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:wsp="http://www.w3.org/ns/ws-policy" xmlns:wsp200409="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsp200607="http://www.w3.org/2006/07/ws-policy" xmlns:ns0="http://www.canadapost.ca/ws/soap/serviceinfo/v2" targetNamespace="http://www.canadapost.ca/ws/soap/serviceinfo/v2">
+	<wsdl:types xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+		
+		<xsd:schema xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://www.canadapost.ca/ws/soap/serviceinfo/v2" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" targetNamespace="http://www.canadapost.ca/ws/soap/serviceinfo/v2">
+
+
+			<xsd:element name="get-ua-mailing-service-info-request"
+				type="tns:ServiceinfoRequestType" />
+
+			<xsd:element name="get-ua-mailing-service-info-response"
+				type="tns:ServiceinfoResponseType" />
+
+
+			<xsd:element name="get-outlet-service-info-request" type="tns:ServiceinfoRequestType" />
+
+			<xsd:element name="get-outlet-service-info-response"
+				type="tns:ServiceinfoResponseType" />
+
+
+			<xsd:element name="get-customer-service-info-request"
+				type="tns:ServiceinfoRequestType" />
+
+			<xsd:element name="get-customer-service-info-response"
+				type="tns:ServiceinfoResponseType" />
+
+
+			<xsd:element name="get-barcode-service-info-request"
+				type="tns:ServiceinfoRequestType" />
+
+			<xsd:element name="get-barcode-service-info-response"
+				type="tns:ServiceinfoResponseType" />
+
+
+			<xsd:element name="get-authreturn-service-info-request"
+				type="tns:ServiceinfoRequestType" />
+
+			<xsd:element name="get-authreturn-service-info-response"
+				type="tns:ServiceinfoResponseType" />
+
+
+			<xsd:element name="get-ship-rate-service-info-request"
+				type="tns:ServiceinfoRequestType" />
+
+			<xsd:element name="get-ship-rate-service-info-response"
+				type="tns:ServiceinfoResponseType" />
+
+
+			<xsd:element name="get-shipment-service-info-request"
+				type="tns:ServiceinfoRequestType" />
+
+			<xsd:element name="get-shipment-service-info-response"
+				type="tns:ServiceinfoResponseType" />
+
+
+			<xsd:element name="get-manifest-service-info-request"
+				type="tns:ServiceinfoRequestType" />
+
+			<xsd:element name="get-manifest-service-info-response"
+				type="tns:ServiceinfoResponseType" />
+
+
+			<xsd:complexType name="ServiceinfoRequestType">
+
+				<xsd:all>
+
+					<xsd:element name="message-type" type="tns:MessageType"
+						minOccurs="0" />
+
+					<xsd:element name="locale" type="tns:locale" minOccurs="0" />
+
+					<xsd:element name="platform-id" type="tns:PlatformIDType"
+						minOccurs="0" />
+				</xsd:all>
+			</xsd:complexType>
+
+
+			<xsd:complexType name="ServiceinfoResponseType">
+
+				<xsd:choice>
+
+					<xsd:element name="info-messages" type="tns:InfoMessagesType" />
+
+					<xsd:element name="messages" type="tns:messages" />
+				</xsd:choice>
+			</xsd:complexType>
+
+
+			<xsd:complexType name="InfoMessagesType">
+
+				<xsd:sequence>
+
+					<xsd:element name="info-message" type="tns:InfoMessageType"
+						minOccurs="0" maxOccurs="unbounded" />
+				</xsd:sequence>
+			</xsd:complexType>
+
+
+			<xsd:simpleType name="MessageType">
+
+				<xsd:restriction base="xsd:normalizedString">
+
+					<xsd:enumeration value="SO" />
+
+					<xsd:enumeration value="NO" />
+				</xsd:restriction>
+			</xsd:simpleType>
+
+
+			<xsd:complexType name="InfoMessageType">
+
+				<xsd:all>
+
+					<xsd:element name="message-type" type="tns:MessageType" />
+
+					<xsd:element name="message-text" type="xsd:token" />
+
+					<xsd:element name="from-datetime" type="xsd:dateTime" />
+
+					<xsd:element name="to-datetime" type="xsd:dateTime" />
+				</xsd:all>
+			</xsd:complexType>
+
+
+			<xsd:complexType name="messages">
+
+				<xsd:sequence>
+
+					<xsd:element minOccurs="0" maxOccurs="unbounded" name="message">
+
+						<xsd:complexType>
+
+							<xsd:sequence>
+
+								<xsd:element name="code" type="xsd:string" />
+
+								<xsd:element name="description" type="xsd:string" />
+							</xsd:sequence>
+						</xsd:complexType>
+					</xsd:element>
+				</xsd:sequence>
+			</xsd:complexType>
+
+
+			<xsd:simpleType name="locale">
+
+				<xsd:restriction base="xsd:string">
+
+					<xsd:pattern value="([eE][nN]|[fF][rR])" />
+				</xsd:restriction>
+			</xsd:simpleType>
+
+
+			<xsd:simpleType name="PlatformIDType">
+
+				<xsd:restriction base="xsd:string">
+
+					<xsd:pattern value="\d{1,10}" />
+				</xsd:restriction>
+			</xsd:simpleType>
+
+		</xsd:schema>
+	</wsdl:types>
+	<wsdl:message name="GetAuthreturnServiceInfoRequest">
+		<wsdl:part name="body" element="xsns:get-authreturn-service-info-request"
+			xmlns:xsns="http://www.canadapost.ca/ws/soap/serviceinfo/v2" />
+	</wsdl:message>
+	<wsdl:message name="GetAuthreturnServiceInfoResponse">
+		<wsdl:part name="body" element="xsns:get-authreturn-service-info-response"
+			xmlns:xsns="http://www.canadapost.ca/ws/soap/serviceinfo/v2" />
+	</wsdl:message>
+	<wsdl:message name="GetBarcodeServiceInfoRequest">
+		<wsdl:part name="body" element="xsns:get-barcode-service-info-request"
+			xmlns:xsns="http://www.canadapost.ca/ws/soap/serviceinfo/v2" />
+	</wsdl:message>
+	<wsdl:message name="GetBarcodeServiceInfoResponse">
+		<wsdl:part name="body" element="xsns:get-barcode-service-info-response"
+			xmlns:xsns="http://www.canadapost.ca/ws/soap/serviceinfo/v2" />
+	</wsdl:message>
+	<wsdl:message name="GetCustomerServiceInfoRequest">
+		<wsdl:part name="body" element="xsns:get-customer-service-info-request"
+			xmlns:xsns="http://www.canadapost.ca/ws/soap/serviceinfo/v2" />
+	</wsdl:message>
+	<wsdl:message name="GetCustomerServiceInfoResponse">
+		<wsdl:part name="body" element="xsns:get-customer-service-info-response"
+			xmlns:xsns="http://www.canadapost.ca/ws/soap/serviceinfo/v2" />
+	</wsdl:message>
+	<wsdl:message name="GetManifestServiceInfoRequest">
+		<wsdl:part name="body" element="xsns:get-manifest-service-info-request"
+			xmlns:xsns="http://www.canadapost.ca/ws/soap/serviceinfo/v2" />
+	</wsdl:message>
+	<wsdl:message name="GetManifestServiceInfoResponse">
+		<wsdl:part name="body" element="xsns:get-manifest-service-info-response"
+			xmlns:xsns="http://www.canadapost.ca/ws/soap/serviceinfo/v2" />
+	</wsdl:message>
+	<wsdl:message name="GetOutletServiceInfoRequest">
+		<wsdl:part name="body" element="xsns:get-outlet-service-info-request"
+			xmlns:xsns="http://www.canadapost.ca/ws/soap/serviceinfo/v2" />
+	</wsdl:message>
+	<wsdl:message name="GetOutletServiceInfoResponse">
+		<wsdl:part name="body" element="xsns:get-outlet-service-info-response"
+			xmlns:xsns="http://www.canadapost.ca/ws/soap/serviceinfo/v2" />
+	</wsdl:message>
+	<wsdl:message name="GetShipmentServiceInfoRequest">
+		<wsdl:part name="body" element="xsns:get-shipment-service-info-request"
+			xmlns:xsns="http://www.canadapost.ca/ws/soap/serviceinfo/v2" />
+	</wsdl:message>
+	<wsdl:message name="GetShipmentServiceInfoResponse">
+		<wsdl:part name="body" element="xsns:get-shipment-service-info-response"
+			xmlns:xsns="http://www.canadapost.ca/ws/soap/serviceinfo/v2" />
+	</wsdl:message>
+	<wsdl:message name="GetShipRateServiceInfoRequest">
+		<wsdl:part name="body" element="xsns:get-ship-rate-service-info-request"
+			xmlns:xsns="http://www.canadapost.ca/ws/soap/serviceinfo/v2" />
+	</wsdl:message>
+	<wsdl:message name="GetShipRateServiceInfoResponse">
+		<wsdl:part name="body" element="xsns:get-ship-rate-service-info-response"
+			xmlns:xsns="http://www.canadapost.ca/ws/soap/serviceinfo/v2" />
+	</wsdl:message>
+	<wsdl:message name="GetUaMailingServiceInfoRequest">
+		<wsdl:part name="body" element="xsns:get-ua-mailing-service-info-request"
+			xmlns:xsns="http://www.canadapost.ca/ws/soap/serviceinfo/v2" />
+	</wsdl:message>
+	<wsdl:message name="GetUaMailingServiceInfoResponse">
+		<wsdl:part name="body" element="xsns:get-ua-mailing-service-info-response"
+			xmlns:xsns="http://www.canadapost.ca/ws/soap/serviceinfo/v2" />
+	</wsdl:message>
+	<wsdl:portType name="ServiceInfoPortType">
+		<wsdl:operation name="GetAuthreturnServiceInfo">
+			<wsdl:input name="GetAuthreturnServiceInfoRequest"
+				message="ns0:GetAuthreturnServiceInfoRequest" />
+			<wsdl:output name="GetAuthreturnServiceInfoResponse"
+				message="ns0:GetAuthreturnServiceInfoResponse" />
+		</wsdl:operation>
+		<wsdl:operation name="GetBarcodeServiceInfo">
+			<wsdl:input name="GetBarcodeServiceInfoRequest" message="ns0:GetBarcodeServiceInfoRequest" />
+			<wsdl:output name="GetBarcodeServiceInfoResponse"
+				message="ns0:GetBarcodeServiceInfoResponse" />
+		</wsdl:operation>
+		<wsdl:operation name="GetCustomerServiceInfo">
+			<wsdl:input name="GetCustomerServiceInfoRequest" message="ns0:GetCustomerServiceInfoRequest" />
+			<wsdl:output name="GetCustomerServiceInfoResponse"
+				message="ns0:GetCustomerServiceInfoResponse" />
+		</wsdl:operation>
+		<wsdl:operation name="GetManifestServiceInfo">
+			<wsdl:input name="GetManifestServiceInfoRequest" message="ns0:GetManifestServiceInfoRequest" />
+			<wsdl:output name="GetManifestServiceInfoResponse"
+				message="ns0:GetManifestServiceInfoResponse" />
+		</wsdl:operation>
+		<wsdl:operation name="GetOutletServiceInfo">
+			<wsdl:input name="GetOutletServiceInfoRequest" message="ns0:GetOutletServiceInfoRequest" />
+			<wsdl:output name="GetOutletServiceInfoResponse" message="ns0:GetOutletServiceInfoResponse" />
+		</wsdl:operation>
+		<wsdl:operation name="GetShipmentServiceInfo">
+			<wsdl:input name="GetShipmentServiceInfoRequest" message="ns0:GetShipmentServiceInfoRequest" />
+			<wsdl:output name="GetShipmentServiceInfoResponse"
+				message="ns0:GetShipmentServiceInfoResponse" />
+		</wsdl:operation>
+		<wsdl:operation name="GetShipRateServiceInfo">
+			<wsdl:input name="GetShipRateServiceInfoRequest" message="ns0:GetShipRateServiceInfoRequest" />
+			<wsdl:output name="GetShipRateServiceInfoResponse"
+				message="ns0:GetShipRateServiceInfoResponse" />
+		</wsdl:operation>
+		<wsdl:operation name="GetUaMailingServiceInfo">
+			<wsdl:input name="GetUaMailingServiceInfoRequest" message="ns0:GetUaMailingServiceInfoRequest" />
+			<wsdl:output name="GetUaMailingServiceInfoResponse"
+				message="ns0:GetUaMailingServiceInfoResponse" />
+		</wsdl:operation>
+	</wsdl:portType>
+	<wsdl:binding name="ServiceInfo" type="ns0:ServiceInfoPortType">
+		<soap11:binding transport="http://schemas.xmlsoap.org/soap/http"
+			style="document" />
+		<wsdl:operation name="GetAuthreturnServiceInfo">
+			<soap11:operation
+				soapAction="http://www.canadapost.ca/ws/soap/service/GetAuthreturnServiceInfo/v2"
+				style="document" />
+			<wsdl:input name="GetAuthreturnServiceInfoRequest">
+				<wsp:PolicyReference URI="#policy0"
+					xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" />
+				<soap11:body use="literal" />
+			</wsdl:input>
+			<wsdl:output name="GetAuthreturnServiceInfoResponse">
+				<soap11:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="GetBarcodeServiceInfo">
+			<soap11:operation
+				soapAction="http://www.canadapost.ca/ws/soap/service/GetBarcodeServiceInfo/v2"
+				style="document" />
+			<wsdl:input name="GetBarcodeServiceInfoRequest">
+				<wsp:PolicyReference URI="#policy0"
+					xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" />
+				<soap11:body use="literal" />
+			</wsdl:input>
+			<wsdl:output name="GetBarcodeServiceInfoResponse">
+				<soap11:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="GetCustomerServiceInfo">
+			<soap11:operation
+				soapAction="http://www.canadapost.ca/ws/soap/service/GetCustomerServiceInfo/v2"
+				style="document" />
+			<wsdl:input name="GetCustomerServiceInfoRequest">
+				<wsp:PolicyReference URI="#policy0"
+					xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" />
+				<soap11:body use="literal" />
+			</wsdl:input>
+			<wsdl:output name="GetCustomerServiceInfoResponse">
+				<soap11:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="GetManifestServiceInfo">
+			<soap11:operation
+				soapAction="http://www.canadapost.ca/ws/soap/service/GetManifestServiceInfo/v2"
+				style="document" />
+			<wsdl:input name="GetManifestServiceInfoRequest">
+				<wsp:PolicyReference URI="#policy0"
+					xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" />
+				<soap11:body use="literal" />
+			</wsdl:input>
+			<wsdl:output name="GetManifestServiceInfoResponse">
+				<soap11:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="GetOutletServiceInfo">
+			<soap11:operation
+				soapAction="http://www.canadapost.ca/ws/soap/service/GetOutletServiceInfo/v2"
+				style="document" />
+			<wsdl:input name="GetOutletServiceInfoRequest">
+				<wsp:PolicyReference URI="#policy0"
+					xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" />
+				<soap11:body use="literal" />
+			</wsdl:input>
+			<wsdl:output name="GetOutletServiceInfoResponse">
+				<soap11:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="GetShipmentServiceInfo">
+			<soap11:operation
+				soapAction="http://www.canadapost.ca/ws/soap/service/GetShipmentServiceInfo/v2"
+				style="document" />
+			<wsdl:input name="GetShipmentServiceInfoRequest">
+				<wsp:PolicyReference URI="#policy0"
+					xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" />
+				<soap11:body use="literal" />
+			</wsdl:input>
+			<wsdl:output name="GetShipmentServiceInfoResponse">
+				<soap11:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="GetShipRateServiceInfo">
+			<soap11:operation
+				soapAction="http://www.canadapost.ca/ws/soap/service/GetShipRateServiceInfo/v2"
+				style="document" />
+			<wsdl:input name="GetShipRateServiceInfoRequest">
+				<wsp:PolicyReference URI="#policy0"
+					xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" />
+				<soap11:body use="literal" />
+			</wsdl:input>
+			<wsdl:output name="GetShipRateServiceInfoResponse">
+				<soap11:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="GetUaMailingServiceInfo">
+			<soap11:operation
+				soapAction="http://www.canadapost.ca/ws/soap/service/GetUaMailingServiceInfo/v2"
+				style="document" />
+			<wsdl:input name="GetUaMailingServiceInfoRequest">
+				<wsp:PolicyReference URI="#policy0"
+					xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" />
+				<soap11:body use="literal" />
+			</wsdl:input>
+			<wsdl:output name="GetUaMailingServiceInfoResponse">
+				<soap11:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+	</wsdl:binding>
+	<wsdl:service name="ServiceInfoService">
+		<wsdl:port name="ServiceInfoPort" binding="ns0:ServiceInfo">
+			<soap11:address location="https://ct.soa-gw.canadapost.ca/rs/soap/serviceinfo/v2" />
+		</wsdl:port>
+		<wsdl:port name="ServiceInfoPort.1" binding="ns0:ServiceInfo">
+			<soap11:address location="https://ct.soa-gw.canadapost.ca/rs/soap/serviceinfo/v2" />
+		</wsdl:port>
+	</wsdl:service>
+	<wsp:Policy wsu:Id="policy0"
+		xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd"
+		xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy">
+		<wsp:ExactlyOne>
+			<wsp:All>
+				<sp:SupportingTokens xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+					xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://www.canadapost.ca/ws/soap/serviceinfo/v2"
+					xmlns:sp="http://docs.oasis-open.org/ws-sx/ws-securitypolicy/200702">
+					<sp:UsernameToken
+						sp:IncludeToken="http://docs.oasis-open.org/ws-sx/ws-securitypolicy/200702/IncludeToken/AlwaysToRecipient">
+						<wsp:Policy>
+							<sp:WssUsernameToken10 />
+						</wsp:Policy>
+					</sp:UsernameToken>
+				</sp:SupportingTokens>
+			</wsp:All>
+			<wsp:All>
+				<sp:SupportingTokens xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+					xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://www.canadapost.ca/ws/soap/serviceinfo/v2"
+					xmlns:sp="http://docs.oasis-open.org/ws-sx/ws-securitypolicy/200702">
+					<sp:UsernameToken
+						sp:IncludeToken="http://docs.oasis-open.org/ws-sx/ws-securitypolicy/200702/IncludeToken/AlwaysToRecipient">
+						<wsp:Policy>
+							<sp:WssUsernameToken11 />
+						</wsp:Policy>
+					</sp:UsernameToken>
+				</sp:SupportingTokens>
+			</wsp:All>
+		</wsp:ExactlyOne>
+	</wsp:Policy>
+</wsdl:definitions>

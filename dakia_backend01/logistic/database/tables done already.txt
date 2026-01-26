@@ -1,0 +1,22 @@
+country
+customer_account
+warehouse
+user
+carrier
+services
+services /Product 
+customized_services_routing
+customized_user_services_routing
+user_services_routing
+agent_data
+carrier_service_default_rules
+address
+service_country_ttime
+carrier_zones
+carrier_zones_countries
+currency
+tariffs / services
+tariffs / product
+Tariffs_details
+tariffs_account_mapping
+remoteareas_groups

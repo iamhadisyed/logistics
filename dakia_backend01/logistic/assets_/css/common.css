@@ -1,0 +1,64 @@
+#dataTables_paginate{
+    font-size: 12px;
+    display: inline-block;
+    float: none!important;
+    padding: 0!important;
+    margin: 0!important;
+    position: static!important;
+}
+.pagination-panel{
+    box-sizing: border-box;
+}
+.btn.default:not(.btn-outline){
+    color: #666;
+    background-color: #e1e5ec;
+    border-color: #e1e5ec;
+}
+a.btn.disabled, fieldset[disabled] a.btn{
+    pointer-events: none;
+}
+.btn.disabled, .btn[disabled], fieldset[disabled] .btn {
+    cursor: not-allowed;
+    opacity: .65;
+}
+.btn{
+    outline: 0!important;
+    box-shadow: none!important;
+}
+.form-control {
+    /*border-color: #3598dc;*/
+    outline: 0!important;
+}
+.input-inline{
+    display: inline-block;
+    width: auto;
+    vertical-align: middle;
+}
+.input-mini, .input-xxs{
+    width: 45px!important;
+}
+.btn, .form-control{
+    box-shadow: none!important;
+}
+.dataTables_extended_wrapper div.dataTables_info, .dataTables_extended_wrapper div.dataTables_length, .dataTables_extended_wrapper div.dataTables_paginate{
+    font-size: 12px;
+}
+.dataTables_info {
+    padding: 0.5rem 0.5rem 0.6rem 0 !important;
+}
+.dataTables_paginate {
+    padding: 0.5rem 0.2rem 0.5rem 0.5rem !important;
+}
+.dataTables_length {
+    padding: 0.5rem 0.2rem 0.5rem 0 !important;
+}
+.dataTables_length label{
+    margin-bottom: 0 !important;
+}
+.dataTables_wrapper .seperator {
+    padding: 0 4px;
+}
+.dataTables_length .form-control{-webkit-appearance: auto;
+    -moz-appearance: auto;
+    appearance: auto;}
+table.dataTable tr.heading > th{ position: relative !important;}

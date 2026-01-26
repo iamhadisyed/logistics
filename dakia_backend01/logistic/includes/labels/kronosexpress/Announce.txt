@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<soap:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
+  <soap:Header>
+    <AuthHeader xmlns="https://services.kronosexpress.com/EshopWS">
+      <UserName>@username</UserName>
+      <Password>@password</Password>
+      <Hash></Hash>
+    </AuthHeader>
+  </soap:Header>
+  <soap:Body>
+    <AnnounceAWB xmlns="https://services.kronosexpress.com/EshopWS">
+      <AWB>@awb</AWB>
+      <RecipientCode>@code</RecipientCode>
+      <RecipientName>@name</RecipientName>
+      <RecipientSurname>@surname</RecipientSurname>
+      <RecipientAddress>@address</RecipientAddress>
+      <RecipientPostcode>@post</RecipientPostcode>
+      <RecipientCity>@city</RecipientCity>
+      <RecipientPhoneNumber>@phone</RecipientPhoneNumber>
+      <RecipientComments>@comments</RecipientComments>
+      <WarehouseCode>@wc</WarehouseCode>
+      <ParcelWeight>@weight</ParcelWeight>
+      <ParcelQuantity>1</ParcelQuantity>
+      <ParcelType>@type</ParcelType>
+      <Services>
+@services
+      </Services>
+      <RecipientEmail>@email</RecipientEmail>
+    </AnnounceAWB>
+  </soap:Body>
+</soap:Envelope>

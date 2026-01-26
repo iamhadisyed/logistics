@@ -1,0 +1,4767 @@
+[
+    {
+        "name": "carrier_service_customize_rules",
+        "columns": [
+            {
+                "name": "id",
+                "type": "int(11)",
+                "pk": false,
+                "fk": false,
+                "nullable": false,
+                "default": null,
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "serviceid",
+                "type": "int(11)",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": null,
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "agentid",
+                "type": "int(11)",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": null,
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "user_account_id",
+                "type": "int(11)",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": null,
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "from_weight",
+                "type": "decimal(10,3)",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": null,
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "to_weight",
+                "type": "decimal(10,3)",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": null,
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "status",
+                "type": "bit(1)",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": "b'1'",
+                "extra": "",
+                "comment": ""
+            }
+        ]
+    },
+    {
+        "name": "carriers",
+        "columns": [
+            {
+                "name": "id",
+                "type": "int(11)",
+                "pk": false,
+                "fk": false,
+                "nullable": false,
+                "default": null,
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "carrier",
+                "type": "varchar(45)",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": null,
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "logo",
+                "type": "varchar(45)",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": null,
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "cut_off_time",
+                "type": "varchar(45)",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": null,
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "carrier_display_name",
+                "type": "varchar(45)",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": null,
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "status",
+                "type": "int(1)",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": null,
+                "extra": "",
+                "comment": "0 for deactive\n1 for  active\n2 for delete"
+            },
+            {
+                "name": "country_id",
+                "type": "int(11)",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": null,
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "carrier_id",
+                "type": "int(11)",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": null,
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "currency_code",
+                "type": "varchar(3)",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": "GBP",
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "remotearea_check",
+                "type": "enum('c','s')",
+                "pk": false,
+                "fk": false,
+                "nullable": false,
+                "default": "c",
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "zone_base",
+                "type": "bit(1)",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": "b'0'",
+                "extra": "",
+                "comment": "1 for carrier and 0 for service"
+            },
+            {
+                "name": "zone_type",
+                "type": "enum('country','postcode')",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": "country",
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "on_contract",
+                "type": "bit(1)",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": "b'0'",
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "is_gazetteer",
+                "type": "tinyint(1)",
+                "pk": false,
+                "fk": false,
+                "nullable": false,
+                "default": "0",
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "is_reconcile",
+                "type": "int(10)",
+                "pk": false,
+                "fk": false,
+                "nullable": false,
+                "default": "0",
+                "extra": "",
+                "comment": ""
+            }
+        ]
+    },
+    {
+        "name": "consignments",
+        "columns": [
+            {
+                "name": "id",
+                "type": "int(11) unsigned",
+                "pk": false,
+                "fk": false,
+                "nullable": false,
+                "default": null,
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "agent_id",
+                "type": "int(11)",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": "51",
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "user_id",
+                "type": "int(11)",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": null,
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "service_id",
+                "type": "int(11)",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": null,
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "customized_service_id",
+                "type": "int(11)",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": "0",
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "warehouse_user_id",
+                "type": "int(11)",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": null,
+                "extra": "",
+                "comment": "User Id for those shipment which created by warehouse  perosn"
+            },
+            {
+                "name": "warehouse_id",
+                "type": "int(11)",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": null,
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "sales_pot_id",
+                "type": "bigint(20)",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": null,
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "invoice_id",
+                "type": "int(11)",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": null,
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "credit_id",
+                "type": "int(11)",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": null,
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "is_invoiced",
+                "type": "int(1)",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": "0",
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "invoice_type",
+                "type": "enum('INV','MNI')",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": null,
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "shipment_status",
+                "type": "int(4)",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": "0",
+                "extra": "",
+                "comment": "4 digit code for shipment status which also belong"
+            },
+            {
+                "name": "shipment_type",
+                "type": "enum('C','D','P','DO')",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": "D",
+                "extra": "",
+                "comment": "C for collection \nD for dispatched\nP product, DO dropoff"
+            },
+            {
+                "name": "awb",
+                "type": "varchar(30)",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": null,
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "consignment_status",
+                "type": "varchar(20)",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": null,
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "return_awb",
+                "type": "varchar(30)",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": null,
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "hawb",
+                "type": "varchar(40)",
+                "pk": false,
+                "fk": false,
+                "nullable": false,
+                "default": null,
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "mawb",
+                "type": "varchar(40)",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": null,
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "service_name",
+                "type": "varchar(50)",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": null,
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "reference",
+                "type": "varchar(20)",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": null,
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "date_created",
+                "type": "timestamp",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": "current_timestamp()",
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "date_label_created",
+                "type": "int(11)",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": null,
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "date_booked",
+                "type": "int(11)",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": null,
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "date_delivered",
+                "type": "int(11)",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": null,
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "is_customer_manifested",
+                "type": "int(1)",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": "0",
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "booked_file_id",
+                "type": "varchar(50)",
+                "pk": false,
+                "fk": false,
+                "nullable": false,
+                "default": "0",
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "company",
+                "type": "varchar(100)",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": null,
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "contact",
+                "type": "varchar(100)",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": null,
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "address_line_1",
+                "type": "varchar(50)",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": null,
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "address_line_2",
+                "type": "varchar(50)",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": null,
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "address_line_3",
+                "type": "varchar(50)",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": null,
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "city",
+                "type": "varchar(50)",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": null,
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "state",
+                "type": "varchar(45)",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": null,
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "postcode",
+                "type": "varchar(15)",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": null,
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "country_id",
+                "type": "int(11)",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": null,
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "telephone",
+                "type": "varchar(17)",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": null,
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "number_pieces",
+                "type": "int(3) unsigned",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": null,
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "weight_type",
+                "type": "varchar(2)",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": "PP",
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "weight",
+                "type": "decimal(8,3) unsigned",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": null,
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "update_weight",
+                "type": "decimal(8,3)",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": null,
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "fake_weight",
+                "type": "decimal(8,3)",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": null,
+                "extra": "",
+                "comment": "sending 20-30% decrease weight to the carrier(Hungary Post) as compared to the actual weight."
+            },
+            {
+                "name": "charge_weight",
+                "type": "decimal(8,3)",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": null,
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "vol_weight",
+                "type": "decimal(8,3)",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": null,
+                "extra": "",
+                "comment": "vol weight will updated by scanning system "
+            },
+            {
+                "name": "vol_demonimator",
+                "type": "int(11)",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": null,
+                "extra": "",
+                "comment": "Denominator will be updated from service table on consignment add"
+            },
+            {
+                "name": "hv_lv",
+                "type": "enum('L','H','M')",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": null,
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "description",
+                "type": "varchar(255)",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": null,
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "notes",
+                "type": "varchar(255)",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": null,
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "value",
+                "type": "decimal(10,2) unsigned",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": null,
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "currency",
+                "type": "varchar(3)",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": null,
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "sender_name",
+                "type": "varchar(45)",
+                "pk": false,
+                "fk": false,
+                "nullable": false,
+                "default": null,
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "username",
+                "type": "varchar(45)",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": null,
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "sender_checked",
+                "type": "int(1)",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": "0",
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "message",
+                "type": "varchar(400)",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": null,
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "sorter_image",
+                "type": "varchar(200)",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": null,
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "label_file",
+                "type": "varchar(255)",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": null,
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "is_doc",
+                "type": "int(1)",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": "0",
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "email",
+                "type": "varchar(45)",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": null,
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "itemtype",
+                "type": "varchar(60)",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": null,
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "routing_code",
+                "type": "varchar(3)",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": null,
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "routing_code_eur",
+                "type": "varchar(45)",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": null,
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "other_routing_code",
+                "type": "varchar(250)",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": null,
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "billing_hold",
+                "type": "int(1)",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": "0",
+                "extra": "",
+                "comment": "Account use this field for making billing hold as YES and NO"
+            },
+            {
+                "name": "send_courier_data",
+                "type": "int(1)",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": "0",
+                "extra": "",
+                "comment": "Set 1 when data send to all courier"
+            },
+            {
+                "name": "remote_charges",
+                "type": "int(1)",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": "0",
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "reinvoices",
+                "type": "int(1)",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": "0",
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "optimus_sorter",
+                "type": "int(1)",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": "0",
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "full_pallet",
+                "type": "int(2)",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": "0",
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "half_pallet",
+                "type": "int(2)",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": "0",
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "quarter_pallet",
+                "type": "int(2)",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": "0",
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "date_scanned",
+                "type": "datetime",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": null,
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "consignment_type",
+                "type": "enum('return','outbound')",
+                "pk": false,
+                "fk": false,
+                "nullable": false,
+                "default": "outbound",
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "api_uuid",
+                "type": "varchar(200)",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": null,
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "sender_company",
+                "type": "varchar(100)",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": null,
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "sender_email",
+                "type": "varchar(45)",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": null,
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "sender_telephone",
+                "type": "varchar(17)",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": null,
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "sender_address_line_1",
+                "type": "varchar(255)",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": null,
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "sender_address_line_2",
+                "type": "varchar(255)",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": null,
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "sender_address_line_3",
+                "type": "varchar(255)",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": null,
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "sender_city",
+                "type": "varchar(50)",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": null,
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "sender_postcode",
+                "type": "varchar(15)",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": null,
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "sender_country_id",
+                "type": "int(11)",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": null,
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "sender_state",
+                "type": "varchar(45)",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": null,
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "collection_date",
+                "type": "date",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": null,
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "collection_start_time",
+                "type": "varchar(5)",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": null,
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "collection_end_time",
+                "type": "varchar(5)",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": null,
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "collection_confirmation_no",
+                "type": "varchar(45)",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": null,
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "created_from",
+                "type": "enum('web','api','csv')",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": "web",
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "is_white_label",
+                "type": "tinyint(4)",
+                "pk": false,
+                "fk": false,
+                "nullable": false,
+                "default": "0",
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "is_dead_weight_chargable",
+                "type": "tinyint(4)",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": "0",
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "is_customer_billable",
+                "type": "int(1)",
+                "pk": false,
+                "fk": false,
+                "nullable": false,
+                "default": "0",
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "ioss_number",
+                "type": "varchar(50)",
+                "pk": false,
+                "fk": false,
+                "nullable": false,
+                "default": "0",
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "eori_number",
+                "type": "varchar(50)",
+                "pk": false,
+                "fk": false,
+                "nullable": false,
+                "default": "0",
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "vat_number",
+                "type": "varchar(50)",
+                "pk": false,
+                "fk": false,
+                "nullable": false,
+                "default": "0",
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "is_over_size_chargable",
+                "type": "int(5)",
+                "pk": false,
+                "fk": false,
+                "nullable": false,
+                "default": "0",
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "is_insured",
+                "type": "int(1)",
+                "pk": false,
+                "fk": false,
+                "nullable": false,
+                "default": "0",
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "destination_warehouse_id",
+                "type": "int(5)",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": "0",
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "consignment_seller",
+                "type": "text",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": null,
+                "extra": "",
+                "comment": ""
+            }
+        ]
+    },
+    {
+        "name": "grouphaspermissions",
+        "columns": [
+            {
+                "name": "id",
+                "type": "int(11)",
+                "pk": false,
+                "fk": false,
+                "nullable": false,
+                "default": null,
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "group_id",
+                "type": "int(11)",
+                "pk": false,
+                "fk": false,
+                "nullable": false,
+                "default": null,
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "perm_id",
+                "type": "int(11)",
+                "pk": false,
+                "fk": false,
+                "nullable": false,
+                "default": null,
+                "extra": "",
+                "comment": ""
+            }
+        ]
+    },
+    {
+        "name": "groups",
+        "columns": [
+            {
+                "name": "group_id",
+                "type": "int(11)",
+                "pk": false,
+                "fk": false,
+                "nullable": false,
+                "default": null,
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "group_name",
+                "type": "varchar(150)",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": null,
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "group_slug",
+                "type": "varchar(255)",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": null,
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "group_desc",
+                "type": "varchar(255)",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": null,
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "group_type",
+                "type": "enum('admin','corporate','client')",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": null,
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "is_active",
+                "type": "tinyint(1)",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": "0",
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "added_by",
+                "type": "int(11)",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": null,
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "added_date",
+                "type": "datetime",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": null,
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "is_deleted",
+                "type": "tinyint(1)",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": "0",
+                "extra": "",
+                "comment": ""
+            }
+        ]
+    },
+    {
+        "name": "manifests",
+        "columns": [
+            {
+                "name": "id",
+                "type": "int(11)",
+                "pk": false,
+                "fk": false,
+                "nullable": false,
+                "default": null,
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "user_id",
+                "type": "int(11)",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": null,
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "file_name",
+                "type": "varchar(500)",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": null,
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "label_link",
+                "type": "varchar(100)",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": null,
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "date_created",
+                "type": "datetime",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": null,
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "pieces",
+                "type": "varchar(45)",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": null,
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "agent_id",
+                "type": "bigint(20)",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": null,
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "weight",
+                "type": "decimal(10,3)",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": null,
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "service_id",
+                "type": "int(11)",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": null,
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "handling",
+                "type": "varchar(200)",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": null,
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "pdf_file",
+                "type": "varchar(500)",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": null,
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "flight_number",
+                "type": "varchar(45)",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": null,
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "mawb",
+                "type": "varchar(45)",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": null,
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "type",
+                "type": "varchar(45)",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": null,
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "collection_comment",
+                "type": "text",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": null,
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "collection_date",
+                "type": "datetime",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": null,
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "collection_date_to",
+                "type": "datetime",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": null,
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "pickup_date",
+                "type": "datetime",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": null,
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "delivery_note",
+                "type": "text",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": null,
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "signature",
+                "type": "varchar(100)",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": null,
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "pickup_id",
+                "type": "int(11)",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": null,
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "route_warehouse_id",
+                "type": "int(11)",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": null,
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "routing_email_date",
+                "type": "datetime",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": null,
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "date_received",
+                "type": "datetime",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": null,
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "received_by",
+                "type": "varchar(45)",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": null,
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "name_of_driver",
+                "type": "varchar(100)",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": null,
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "licence_number",
+                "type": "varchar(100)",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": null,
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "account_owner",
+                "type": "varchar(45)",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": null,
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "number_bag",
+                "type": "varchar(45)",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": null,
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "product",
+                "type": "varchar(500)",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": null,
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "carrier_note",
+                "type": "varchar(5000)",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": null,
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "carrier_pdf",
+                "type": "varchar(500)",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": null,
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "carrier_id",
+                "type": "int(11)",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": null,
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "is_deleted",
+                "type": "enum('Y','N')",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": "N",
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "is_dispatched",
+                "type": "enum('Y','N')",
+                "pk": false,
+                "fk": false,
+                "nullable": false,
+                "default": "N",
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "is_send_email",
+                "type": "enum('Y','N')",
+                "pk": false,
+                "fk": false,
+                "nullable": false,
+                "default": "N",
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "manifest_by",
+                "type": "enum('operation','client')",
+                "pk": false,
+                "fk": false,
+                "nullable": false,
+                "default": "client",
+                "extra": "",
+                "comment": ""
+            }
+        ]
+    },
+    {
+        "name": "parcels",
+        "columns": [
+            {
+                "name": "id",
+                "type": "int(11) unsigned",
+                "pk": false,
+                "fk": false,
+                "nullable": false,
+                "default": null,
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "consignment_id",
+                "type": "int(11) unsigned",
+                "pk": false,
+                "fk": false,
+                "nullable": false,
+                "default": null,
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "tracking_number",
+                "type": "varchar(32)",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": null,
+                "extra": "",
+                "comment": "tracking number for parcel"
+            },
+            {
+                "name": "do_tracking_number",
+                "type": "varchar(32)",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": null,
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "length",
+                "type": "decimal(10,2) unsigned",
+                "pk": false,
+                "fk": false,
+                "nullable": false,
+                "default": "0.00",
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "width",
+                "type": "decimal(10,2) unsigned",
+                "pk": false,
+                "fk": false,
+                "nullable": false,
+                "default": "0.00",
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "height",
+                "type": "decimal(10,2) unsigned",
+                "pk": false,
+                "fk": false,
+                "nullable": false,
+                "default": "0.00",
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "weight",
+                "type": "decimal(4,2)",
+                "pk": false,
+                "fk": false,
+                "nullable": false,
+                "default": null,
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "description",
+                "type": "text",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": null,
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "parcel_message",
+                "type": "text",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": null,
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "qty",
+                "type": "varchar(45)",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": null,
+                "extra": "",
+                "comment": "Number of items in parcel"
+            },
+            {
+                "name": "commoditycode",
+                "type": "varchar(300)",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": null,
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "hscode",
+                "type": "varchar(300)",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": null,
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "grossweight",
+                "type": "decimal(10,2)",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": null,
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "pweight",
+                "type": "varchar(45)",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": null,
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "itemvalue",
+                "type": "varchar(300)",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": null,
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "number_item",
+                "type": "int(2)",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": null,
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "tarrif_no",
+                "type": "varchar(45)",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": null,
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "update_weight",
+                "type": "decimal(10,2)",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": null,
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "owe_status_code",
+                "type": "varchar(200)",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": null,
+                "extra": "",
+                "comment": "For tracking purpose"
+            },
+            {
+                "name": "chute_sorted",
+                "type": "int(4)",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": null,
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "parcel_status_code",
+                "type": "int(3)",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": null,
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "routing_code",
+                "type": "varchar(45)",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": null,
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "last_tracking_update",
+                "type": "datetime",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": null,
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "parcel_item_desc",
+                "type": "text",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": null,
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "parcel_label",
+                "type": "varchar(255)",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": null,
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "itemsku",
+                "type": "varchar(255)",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": null,
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "itemurl",
+                "type": "varchar(255)",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": null,
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "sort_type",
+                "type": "varchar(50)",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": null,
+                "extra": "",
+                "comment": ""
+            }
+        ]
+    },
+    {
+        "name": "permissions",
+        "columns": [
+            {
+                "name": "id",
+                "type": "int(11)",
+                "pk": false,
+                "fk": false,
+                "nullable": false,
+                "default": null,
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "lang_key",
+                "type": "varchar(100)",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": null,
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "parent_id",
+                "type": "int(11)",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": null,
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "file_name",
+                "type": "varchar(150)",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": null,
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "description",
+                "type": "varchar(250)",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": null,
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "added_by",
+                "type": "int(11)",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": null,
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "added_date",
+                "type": "datetime",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": null,
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "query_string",
+                "type": "varchar(100)",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": null,
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "icon",
+                "type": "varchar(50)",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": null,
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "sort_order",
+                "type": "int(11)",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": null,
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "is_menu_item",
+                "type": "tinyint(1)",
+                "pk": false,
+                "fk": false,
+                "nullable": false,
+                "default": "1",
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "is_active",
+                "type": "tinyint(1)",
+                "pk": false,
+                "fk": false,
+                "nullable": false,
+                "default": "0",
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "is_deleted",
+                "type": "tinyint(1)",
+                "pk": false,
+                "fk": false,
+                "nullable": false,
+                "default": "0",
+                "extra": "",
+                "comment": ""
+            }
+        ]
+    },
+    {
+        "name": "services",
+        "columns": [
+            {
+                "name": "id",
+                "type": "int(10) unsigned",
+                "pk": false,
+                "fk": false,
+                "nullable": false,
+                "default": null,
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "name",
+                "type": "varchar(45)",
+                "pk": false,
+                "fk": false,
+                "nullable": false,
+                "default": null,
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "code",
+                "type": "varchar(20)",
+                "pk": false,
+                "fk": false,
+                "nullable": false,
+                "default": null,
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "carrier_id",
+                "type": "int(11)",
+                "pk": false,
+                "fk": false,
+                "nullable": false,
+                "default": null,
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "account_number",
+                "type": "varchar(20)",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": null,
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "type",
+                "type": "varchar(5)",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": null,
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "from_weight",
+                "type": "decimal(10,3)",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": null,
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "to_weight",
+                "type": "decimal(10,3)",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": null,
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "wieght_type",
+                "type": "int(11)",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": "1",
+                "extra": "",
+                "comment": "1 for parcel \n2 for shipment"
+            },
+            {
+                "name": "supplier",
+                "type": "varchar(100)",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": null,
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "service_type",
+                "type": "enum('D','C','B','DO')",
+                "pk": false,
+                "fk": false,
+                "nullable": false,
+                "default": "D",
+                "extra": "",
+                "comment": "D dispatch, B both, C collection, DO for drop off"
+            },
+            {
+                "name": "drop_off_service_id",
+                "type": "bigint(20)",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": null,
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "description",
+                "type": "text",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": null,
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "fuel_surcharge_cost",
+                "type": "decimal(9,2)",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": null,
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "fuel_surcharge",
+                "type": "decimal(9,2)",
+                "pk": false,
+                "fk": false,
+                "nullable": false,
+                "default": null,
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "fuel_surcharge_type",
+                "type": "char(1)",
+                "pk": false,
+                "fk": false,
+                "nullable": false,
+                "default": null,
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "max_length",
+                "type": "decimal(9,2)",
+                "pk": false,
+                "fk": false,
+                "nullable": false,
+                "default": null,
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "max_width",
+                "type": "decimal(9,2)",
+                "pk": false,
+                "fk": false,
+                "nullable": false,
+                "default": null,
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "max_height",
+                "type": "decimal(9,2)",
+                "pk": false,
+                "fk": false,
+                "nullable": false,
+                "default": null,
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "max_volumetric_weight",
+                "type": "decimal(9,2)",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": null,
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "volumetric_denominator",
+                "type": "int(11)",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": "5000",
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "send_data_courier",
+                "type": "tinyint(4)",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": "0",
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "is_document",
+                "type": "tinyint(1)",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": "0",
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "friday_only_flag",
+                "type": "tinyint(1)",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": null,
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "saturday_only_flag",
+                "type": "tinyint(1)",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": "0",
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "sunday_only_flag",
+                "type": "tinyint(1)",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": "0",
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "product_owner",
+                "type": "int(11)",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": null,
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "active",
+                "type": "tinyint(1)",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": "1",
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "deletedq",
+                "type": "tinyint(1)",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": "0",
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "added_on",
+                "type": "datetime",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": null,
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "added_by",
+                "type": "varchar(100)",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": null,
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "changed_on",
+                "type": "datetime",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": null,
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "changed_by",
+                "type": "varchar(100)",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": null,
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "uploaded_currency",
+                "type": "varchar(3)",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": null,
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "uploaded_currency_value",
+                "type": "decimal(10,2)",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": null,
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "registration_fee",
+                "type": "decimal(10,2)",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": "0.00",
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "weight_after",
+                "type": "decimal(10,2)",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": "0.00",
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "aditional_charge",
+                "type": "decimal(10,2)",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": "0.00",
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "origin_country",
+                "type": "int(11)",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": "255",
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "is_untrack",
+                "type": "bit(1)",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": "b'0'",
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "account_owner",
+                "type": "int(11)",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": null,
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "remotearea",
+                "type": "enum('ON_WEIGHT','ON_PIECE')",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": "ON_PIECE",
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "carrier_address_limit",
+                "type": "int(5)",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": "30",
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "label_class_name",
+                "type": "varchar(100)",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": null,
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "transit_time",
+                "type": "int(3)",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": null,
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "required_email",
+                "type": "tinyint(1)",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": "0",
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "required_telephone",
+                "type": "tinyint(1)",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": "0",
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "shipment_type",
+                "type": "enum('LETTER','PARCEL')",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": "PARCEL",
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "pre_sort",
+                "type": "enum('YES','NO')",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": "NO",
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "proforma_invoice",
+                "type": "tinyint(1)",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": "0",
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "agent_dispatch",
+                "type": "enum('Y','N')",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": "N",
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "brief_manifest",
+                "type": "enum('Y','N')",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": "N",
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "delivery_mode",
+                "type": "tinyint(1)",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": null,
+                "extra": "",
+                "comment": "1 - Door to Door Delivery\n2 - Parcel Shops\n3 - Door to Door Delivery (POD)\n"
+            },
+            {
+                "name": "insurance_available",
+                "type": "tinyint(1)",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": "0",
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "vol_wgt_formula",
+                "type": "varchar(50)",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": null,
+                "extra": "",
+                "comment": "L* W * H \/ 5000"
+            },
+            {
+                "name": "is_remotearea",
+                "type": "enum('Y','N')",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": "N",
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "is_customized",
+                "type": "bit(1)",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": "b'0'",
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "pre_advise",
+                "type": "enum('Y','N')",
+                "pk": false,
+                "fk": false,
+                "nullable": false,
+                "default": "N",
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "pre_alert",
+                "type": "enum('Y','N')",
+                "pk": false,
+                "fk": false,
+                "nullable": false,
+                "default": "N",
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "pre_alert_email",
+                "type": "text",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": null,
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "cut_off_time",
+                "type": "varchar(5)",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": null,
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "label_charges",
+                "type": "decimal(10,2)",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": "0.00",
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "allow_oversize",
+                "type": "tinyint(4)",
+                "pk": false,
+                "fk": false,
+                "nullable": false,
+                "default": "0",
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "allow_overweight",
+                "type": "tinyint(4)",
+                "pk": false,
+                "fk": false,
+                "nullable": false,
+                "default": "0",
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "maximum_allowed_dimension",
+                "type": "int(4)",
+                "pk": false,
+                "fk": false,
+                "nullable": false,
+                "default": "0",
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "maximum_dim_formula",
+                "type": "varchar(100)",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": null,
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "validation_type",
+                "type": "enum('mail','courier')",
+                "pk": false,
+                "fk": false,
+                "nullable": false,
+                "default": "mail",
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "zone_type",
+                "type": "enum('country','postcode')",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": "country",
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "tariff_type",
+                "type": "enum('multi','single')",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": "single",
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "girth",
+                "type": "decimal(10,2)",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": null,
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "girth_formula",
+                "type": "varchar(255)",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": null,
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "mail_type",
+                "type": "enum('letter','boxable','non-boxable')",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": null,
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "mail_option",
+                "type": "enum('commercial','freight_to_post')",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": null,
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "is_reschedulable",
+                "type": "int(1)",
+                "pk": false,
+                "fk": false,
+                "nullable": false,
+                "default": "0",
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "carrier_service_code",
+                "type": "varchar(50)",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": null,
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "is_eori_required",
+                "type": "int(2)",
+                "pk": false,
+                "fk": false,
+                "nullable": false,
+                "default": "0",
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "delivery_type",
+                "type": "enum('all','economy','priority','')",
+                "pk": false,
+                "fk": false,
+                "nullable": false,
+                "default": "all",
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "is_commercials",
+                "type": "enum('required','not required')",
+                "pk": false,
+                "fk": false,
+                "nullable": false,
+                "default": "not required",
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "is_cn",
+                "type": "enum('required','not required')",
+                "pk": false,
+                "fk": false,
+                "nullable": false,
+                "default": "not required",
+                "extra": "",
+                "comment": ""
+            }
+        ]
+    },
+    {
+        "name": "user_accounts",
+        "columns": [
+            {
+                "name": "id",
+                "type": "int(10) unsigned",
+                "pk": false,
+                "fk": false,
+                "nullable": false,
+                "default": null,
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "user_account",
+                "type": "varchar(30)",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": null,
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "active_flag",
+                "type": "bit(1)",
+                "pk": false,
+                "fk": false,
+                "nullable": false,
+                "default": "b'0'",
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "company",
+                "type": "varchar(100)",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": null,
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "full_name",
+                "type": "varchar(100)",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": null,
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "return_address",
+                "type": "varchar(255)",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": null,
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "sms_dpd",
+                "type": "bit(1)",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": "b'0'",
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "user_service_type",
+                "type": "enum('CHOICE','ROUTING','BOTH')",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": null,
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "parentid",
+                "type": "int(11)",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": null,
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "phone",
+                "type": "varchar(20)",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": null,
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "logo",
+                "type": "varchar(255)",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": null,
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "instant_label",
+                "type": "bit(1)",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": "b'1'",
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "country",
+                "type": "varchar(3)",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": null,
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "country_id",
+                "type": "int(11)",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": null,
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "tracking_api_access",
+                "type": "bit(1)",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": "b'0'",
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "import_data_csv",
+                "type": "bit(1)",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": "b'0'",
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "proforma",
+                "type": "bit(1)",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": "b'0'",
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "add_tracking",
+                "type": "bit(1)",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": "b'0'",
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "collection",
+                "type": "bit(1)",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": "b'0'",
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "default_description",
+                "type": "varchar(255)",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": null,
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "default_notes",
+                "type": "varchar(255)",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": null,
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "default_weight",
+                "type": "decimal(5,2)",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": null,
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "payment_term",
+                "type": "text",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": null,
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "query_term",
+                "type": "text",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": null,
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "vat_number",
+                "type": "varchar(40)",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": null,
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "billing_currency",
+                "type": "varchar(3)",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": "GBP",
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "vat_chargable",
+                "type": "bit(1)",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": "b'0'",
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "vat_value",
+                "type": "decimal(10,2)",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": null,
+                "extra": "",
+                "comment": "this is percentage field"
+            },
+            {
+                "name": "allow_remote_area",
+                "type": "bit(1)",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": "b'0'",
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "telephone",
+                "type": "varchar(20)",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": null,
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "billing_address",
+                "type": "varchar(255)",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": null,
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "date_dispatch",
+                "type": "bit(1)",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": "b'0'",
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "is_product",
+                "type": "varchar(2)",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": "0",
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "profile_image",
+                "type": "varchar(255)",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": null,
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "send_courier_data",
+                "type": "bit(1)",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": "b'0'",
+                "extra": "",
+                "comment": "Send data on label Creation"
+            },
+            {
+                "name": "archive_server",
+                "type": "bit(1)",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": "b'0'",
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "credit_check",
+                "type": "bit(1)",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": "b'0'",
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "tariff_agreed",
+                "type": "bit(1)",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": "b'0'",
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "sales_person",
+                "type": "varchar(45)",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": null,
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "scan_document",
+                "type": "text",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": null,
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "data_entry",
+                "type": "bit(1)",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": "b'0'",
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "bank_account_title",
+                "type": "varchar(45)",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": null,
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "bank_sortcode",
+                "type": "varchar(10)",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": null,
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "bank_account_number",
+                "type": "varchar(20)",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": null,
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "bank_branch_address",
+                "type": "varchar(255)",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": null,
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "trade_name_i",
+                "type": "varchar(50)",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": null,
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "trade_address_i",
+                "type": "varchar(255)",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": null,
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "trade_email_i",
+                "type": "varchar(255)",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": null,
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "trade_phone_i",
+                "type": "varchar(50)",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": null,
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "trade_name_ii",
+                "type": "varchar(50)",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": null,
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "trade_address_ii",
+                "type": "varchar(255)",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": null,
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "trade_email_ii",
+                "type": "varchar(255)",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": null,
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "trade_phone_ii",
+                "type": "varchar(50)",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": null,
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "reg_number",
+                "type": "varchar(20)",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": null,
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "reg_address",
+                "type": "varchar(255)",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": null,
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "reg_postcode",
+                "type": "varchar(10)",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": null,
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "reg_country",
+                "type": "varchar(5)",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": null,
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "sale_agent",
+                "type": "varchar(10)",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": null,
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "sale_date",
+                "type": "datetime",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": null,
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "fuel_charges",
+                "type": "decimal(10,2)",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": "0.00",
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "warehouse_id",
+                "type": "int(11)",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": null,
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "user_signature",
+                "type": "text",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": null,
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "is_fuelcharges_include",
+                "type": "bit(1)",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": "b'0'",
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "is_prepaid",
+                "type": "bit(1)",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": "b'0'",
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "return_label",
+                "type": "bit(1)",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": "b'0'",
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "finalmile_over_label",
+                "type": "bit(1)",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": "b'0'",
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "request_manifest_collection",
+                "type": "bit(1)",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": "b'0'",
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "create_pre_alert",
+                "type": "bit(1)",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": "b'0'",
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "is_employee",
+                "type": "bit(1)",
+                "pk": false,
+                "fk": false,
+                "nullable": false,
+                "default": "b'0'",
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "invoice_bank_details_id",
+                "type": "int(11)",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": "0",
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "check_list_account_form",
+                "type": "bit(1)",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": "b'0'",
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "check_list_credit_check",
+                "type": "bit(1)",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": "b'0'",
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "check_list_t_cs",
+                "type": "bit(1)",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": "b'0'",
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "check_list_tariff_agreed",
+                "type": "bit(1)",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": "b'0'",
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "check_list_sales_pot",
+                "type": "bit(1)",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": "b'0'",
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "sales_pot_time_period",
+                "type": "int(5)",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": "0",
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "sales_pot_percentage",
+                "type": "decimal(5,2)",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": "0.00",
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "last_login_date",
+                "type": "timestamp",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": null,
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "invalid_login_count",
+                "type": "int(11)",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": null,
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "token",
+                "type": "varchar(255)",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": null,
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "token_updated",
+                "type": "timestamp",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": null,
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "lock_time",
+                "type": "timestamp",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": null,
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "opearation_manifest",
+                "type": "bit(1)",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": "b'0'",
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "own_tariff",
+                "type": "bit(1)",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": "b'0'",
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "user_warehouse",
+                "type": "enum('NON','BIRMINGHAM','HAYES')",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": "NON",
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "api_key",
+                "type": "varchar(100)",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": null,
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "api_secert",
+                "type": "varchar(100)",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": null,
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "api_date",
+                "type": "datetime",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": null,
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "bagging",
+                "type": "bit(1)",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": "b'0'",
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "retail_customer",
+                "type": "bit(1)",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": "b'0'",
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "show_price",
+                "type": "bit(1)",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": "b'0'",
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "sales_rate",
+                "type": "decimal(10,2)",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": null,
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "collection_add_line_1",
+                "type": "varchar(50)",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": null,
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "collection_add_line_2",
+                "type": "varchar(50)",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": null,
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "collection_add_line_3",
+                "type": "varchar(50)",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": null,
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "collection_city",
+                "type": "varchar(45)",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": null,
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "collection_postcode",
+                "type": "varchar(45)",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": null,
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "collection_country",
+                "type": "varchar(45)",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": null,
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "theme_id",
+                "type": "int(5)",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": null,
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "user_code",
+                "type": "int(11)",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": null,
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "website_link",
+                "type": "varchar(200)",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": null,
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "allow_return_email",
+                "type": "bit(1)",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": "b'0'",
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "default_lang",
+                "type": "varchar(10)",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": "en-GB",
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "credit_limit",
+                "type": "decimal(10,2)",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": "0.00",
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "invoice_period",
+                "type": "enum('daily','weekly','bi-monthly','monthly')",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": "daily",
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "label_price",
+                "type": "decimal(10,2)",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": "0.00",
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "discount",
+                "type": "decimal(10,2)",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": "0.00",
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "account_code",
+                "type": "varchar(4)",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": null,
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "paypal_email",
+                "type": "varchar(70)",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": null,
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "paypal_currency",
+                "type": "varchar(20)",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": null,
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "email",
+                "type": "varchar(500)",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": null,
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "paypal_client_secret",
+                "type": "varchar(255)",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": null,
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "alternative_email",
+                "type": "varchar(500)",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": null,
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "billing_email",
+                "type": "varchar(500)",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": null,
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "date_created",
+                "type": "timestamp",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": "current_timestamp()",
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "allow_oversize",
+                "type": "tinyint(4)",
+                "pk": false,
+                "fk": false,
+                "nullable": false,
+                "default": "0",
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "allow_overweight",
+                "type": "tinyint(4)",
+                "pk": false,
+                "fk": false,
+                "nullable": false,
+                "default": "0",
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "paypal_client_id",
+                "type": "varchar(255)",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": null,
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "invoice_template_id",
+                "type": "bigint(20) unsigned",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": null,
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "send_tracking_data",
+                "type": "bit(1)",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": null,
+                "extra": "",
+                "comment": ""
+            }
+        ]
+    },
+    {
+        "name": "user_departments",
+        "columns": [
+            {
+                "name": "id",
+                "type": "bigint(20)",
+                "pk": false,
+                "fk": false,
+                "nullable": false,
+                "default": null,
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "user_id",
+                "type": "bigint(20)",
+                "pk": false,
+                "fk": false,
+                "nullable": false,
+                "default": null,
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "department_id",
+                "type": "int(11)",
+                "pk": false,
+                "fk": false,
+                "nullable": false,
+                "default": null,
+                "extra": "",
+                "comment": ""
+            }
+        ]
+    },
+    {
+        "name": "user_services_routings",
+        "columns": [
+            {
+                "name": "id",
+                "type": "int(10) unsigned",
+                "pk": false,
+                "fk": false,
+                "nullable": false,
+                "default": null,
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "user_account_id",
+                "type": "int(11)",
+                "pk": false,
+                "fk": false,
+                "nullable": false,
+                "default": null,
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "country_id",
+                "type": "int(11)",
+                "pk": false,
+                "fk": false,
+                "nullable": false,
+                "default": null,
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "from_weight",
+                "type": "decimal(10,2)",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": null,
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "to_weight",
+                "type": "decimal(10,2)",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": null,
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "status",
+                "type": "bit(1)",
+                "pk": false,
+                "fk": false,
+                "nullable": false,
+                "default": "b'0'",
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "service_id",
+                "type": "int(11)",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": null,
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "is_remotearea",
+                "type": "bit(1)",
+                "pk": false,
+                "fk": false,
+                "nullable": false,
+                "default": "b'0'",
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "is_over_label",
+                "type": "bit(1)",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": "b'0'",
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "added_by",
+                "type": "int(11)",
+                "pk": false,
+                "fk": false,
+                "nullable": false,
+                "default": null,
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "is_agreed",
+                "type": "bit(1)",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": "b'0'",
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "label_charges",
+                "type": "decimal(10,2)",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": "0.00",
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "is_dead_weight",
+                "type": "bit(1)",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": "b'0'",
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "is_over_size",
+                "type": "int(2)",
+                "pk": false,
+                "fk": false,
+                "nullable": false,
+                "default": "0",
+                "extra": "",
+                "comment": ""
+            }
+        ]
+    },
+    {
+        "name": "users",
+        "columns": [
+            {
+                "name": "id",
+                "type": "bigint(20) unsigned",
+                "pk": true,
+                "fk": false,
+                "nullable": false,
+                "default": null,
+                "extra": "auto_increment",
+                "comment": ""
+            },
+            {
+                "name": "name",
+                "type": "varchar(255)",
+                "pk": false,
+                "fk": false,
+                "nullable": false,
+                "default": null,
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "email",
+                "type": "varchar(255)",
+                "pk": false,
+                "fk": false,
+                "nullable": false,
+                "default": null,
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "email_verified_at",
+                "type": "timestamp",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": null,
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "password",
+                "type": "varchar(255)",
+                "pk": false,
+                "fk": false,
+                "nullable": false,
+                "default": null,
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "user_type",
+                "type": "enum('corporate','client','admin','driver')",
+                "pk": false,
+                "fk": false,
+                "nullable": false,
+                "default": "client",
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "user_name",
+                "type": "varchar(30)",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": null,
+                "extra": "",
+                "comment": "Legacy username field"
+            },
+            {
+                "name": "active_flag",
+                "type": "tinyint(1)",
+                "pk": false,
+                "fk": false,
+                "nullable": false,
+                "default": "0",
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "first_name",
+                "type": "varchar(100)",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": null,
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "last_name",
+                "type": "varchar(255)",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": null,
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "address",
+                "type": "varchar(255)",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": null,
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "phone",
+                "type": "varchar(20)",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": null,
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "country_id",
+                "type": "int(11)",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": null,
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "api_key",
+                "type": "varchar(100)",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": null,
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "api_secret",
+                "type": "varchar(100)",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": null,
+                "extra": "",
+                "comment": "Fixed typo from api_secert"
+            },
+            {
+                "name": "api_date",
+                "type": "datetime",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": null,
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "profile_image",
+                "type": "varchar(255)",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": null,
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "is_employee",
+                "type": "tinyint(1)",
+                "pk": false,
+                "fk": false,
+                "nullable": false,
+                "default": "0",
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "warehouse_id",
+                "type": "int(11)",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": null,
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "dashboard",
+                "type": "enum('corporate','operation','customer_service','account','driver')",
+                "pk": false,
+                "fk": false,
+                "nullable": false,
+                "default": "corporate",
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "invalid_login_count",
+                "type": "int(11)",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": null,
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "user_account_id",
+                "type": "int(11)",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": null,
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "last_login_date",
+                "type": "datetime",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": null,
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "added_by",
+                "type": "int(11)",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": null,
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "added_date",
+                "type": "datetime",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": null,
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "updated_by",
+                "type": "int(11)",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": null,
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "updated_date",
+                "type": "datetime",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": null,
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "is_deleted",
+                "type": "tinyint(1)",
+                "pk": false,
+                "fk": false,
+                "nullable": false,
+                "default": "0",
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "archive_server",
+                "type": "tinyint(1)",
+                "pk": false,
+                "fk": false,
+                "nullable": false,
+                "default": "0",
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "carrier_setup_agreement",
+                "type": "tinyint(1)",
+                "pk": false,
+                "fk": false,
+                "nullable": false,
+                "default": "0",
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "receive_email",
+                "type": "enum('y','n')",
+                "pk": false,
+                "fk": false,
+                "nullable": false,
+                "default": "n",
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "tc_agreed_date",
+                "type": "date",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": null,
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "is_tc_agreed",
+                "type": "enum('y','n','i')",
+                "pk": false,
+                "fk": false,
+                "nullable": false,
+                "default": "n",
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "address_2",
+                "type": "varchar(50)",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": null,
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "address_3",
+                "type": "varchar(50)",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": null,
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "city",
+                "type": "varchar(50)",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": null,
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "postcode",
+                "type": "varchar(15)",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": null,
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "state",
+                "type": "varchar(50)",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": null,
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "commission_break_event_amount",
+                "type": "varchar(50)",
+                "pk": false,
+                "fk": false,
+                "nullable": false,
+                "default": "",
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "is_sale_pot_eligible",
+                "type": "tinyint(1)",
+                "pk": false,
+                "fk": false,
+                "nullable": false,
+                "default": "0",
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "remember_token",
+                "type": "varchar(100)",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": null,
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "created_at",
+                "type": "timestamp",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": null,
+                "extra": "",
+                "comment": ""
+            },
+            {
+                "name": "updated_at",
+                "type": "timestamp",
+                "pk": false,
+                "fk": false,
+                "nullable": true,
+                "default": null,
+                "extra": "",
+                "comment": ""
+            }
+        ]
+    }
+]

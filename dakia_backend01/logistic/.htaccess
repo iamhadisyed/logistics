@@ -1,0 +1,70 @@
+#Options +FollowSymLinks -MultiViews
+# Turn mod_rewrite on
+RewriteEngine On
+RewriteBase /
+
+#RewriteCond %{REQUEST_FILENAME}.php -f
+#RewriteCond %{REQUEST_URI} !/$
+#RewriteRule (.*) $1\.php [L]
+
+RewriteRule ^$ /main/index.php [L,NC]
+RewriteRule ^/$ /main/index.php [L,NC]
+
+#RewriteCond %{THE_REQUEST} ^[A-Z]{3,}\s/+main/([^\s]+) [NC]
+#RewriteRule ^ %1 [R=301,L]
+
+RewriteRule ^login$ main/login.php [NC,QSA]
+RewriteRule ^login/$ main/login.php [NC,QSA]
+
+RewriteRule ^dashboard$ main/index.php [NC,QSA]
+RewriteRule ^dashboard/$ main/index.php [NC,QSA]
+
+RewriteRule ^clients$ main/client_list.php [NC,QSA]
+RewriteRule ^clients/$ main/client_list.php [NC,QSA]
+
+RewriteRule ^bookings$ main/bookings.php [NC,QSA]
+RewriteRule ^bookings/$ main/bookings.php [NC,QSA]
+
+RewriteRule ^invoices$ main/invoices.php [NC,QSA]
+RewriteRule ^invoices/$ main/invoices.php [NC,QSA]
+
+RewriteRule ^customers-listing$ main/customers.php [NC,QSA]
+RewriteRule ^customers-listing/$ main/customers.php [NC,QSA]
+
+RewriteRule ^users-listing$ main/list_users.php [NC,QSA]
+RewriteRule ^users-listing/$ main/list_users.php [NC,QSA]
+
+RewriteRule ^view-profile$ main/view_profile.php [NC,QSA]
+RewriteRule ^view-profile/$ main/view_profile.php [NC,QSA]
+
+RewriteRule ^logout$ main/login.php?logout=true [NC,QSA]
+RewriteRule ^logout/$ main/login.php?logout=true [NC,QSA]
+
+RewriteRule ^dashboard$ main/index.php [NC,QSA]
+RewriteRule ^dashboard/$ main/index.php [NC,QSA]
+
+RewriteRule ^login$ main/login.php [NC,QSA]
+RewriteRule ^login/$ main/login.php [NC,QSA]
+
+RewriteRule ^dashboard$ main/index.php [NC,QSA]
+RewriteRule ^dashboard/$ main/index.php [NC,QSA]
+
+RewriteRule ^login$ main/login.php [NC,QSA]
+RewriteRule ^login/$ main/login.php [NC,QSA]
+
+RewriteRule ^dashboard$ main/index.php [NC,QSA]
+RewriteRule ^dashboard/$ main/index.php [NC,QSA]
+
+#RewriteCond %{REQUEST_FILENAME} !-f
+#RewriteRule (?!^main/)^(.*)$ /main/$1 [L,NC]
+
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)\.php$ main/$1.php [L,NC]
+
+
+#RewriteCond %{REQUEST_FILENAME} !-f
+#RewriteRule (?!^images/)^(.*)$ /images/$1 [L,NC]
+
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule (?!^import_temps/)^(.*)$ /import_temps/$1 [L,NC]

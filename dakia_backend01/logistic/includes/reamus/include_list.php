@@ -1,0 +1,11 @@
+<?php
+require_once(BASE_PATH."includes/reamus/reamus.class.php");
+require_once(BASE_PATH."includes/reamus/reamusdestinationstation.class.php");
+require_once(BASE_PATH."includes/reamus/reamusdestinationstationfilter.class.php");
+require_once(BASE_PATH."includes/reamus/reamusexception.class.php");
+require_once(BASE_PATH."includes/reamus/reamusexceptionfilter.class.php");
+require_once(BASE_PATH."includes/reamus/reamusproductservice.class.php");
+require_once(BASE_PATH."includes/reamus/reamusproductservicefilter.class.php");
+require_once(BASE_PATH."includes/reamus/reamusservice.class.php");
+require_once(BASE_PATH."includes/reamus/reamussite.class.php");
+require_once(BASE_PATH."includes/reamus/reamussitefilter.class.php");

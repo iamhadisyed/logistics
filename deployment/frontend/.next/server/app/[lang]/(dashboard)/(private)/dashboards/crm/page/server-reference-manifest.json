@@ -1,0 +1,115 @@
+{
+  "node": {
+    "7fc37b65a07ecd66234095bba779d1a4b821887361": {
+      "workers": {
+        "app/[lang]/(dashboard)/(private)/dashboards/crm/page": {
+          "moduleId": "[project]/.next-internal/server/app/[lang]/(dashboard)/(private)/dashboards/crm/page/actions.js { ACTIONS_MODULE0 => \"[project]/src/app/server/actions.ts [app-rsc] (ecmascript)\" } [app-rsc] (ecmascript)",
+          "async": false
+        }
+      },
+      "layer": {
+        "app/[lang]/(dashboard)/(private)/dashboards/crm/page": "rsc"
+      }
+    },
+    "7f3a754af2ab4e0f1d84dd327024a447128faf29f2": {
+      "workers": {
+        "app/[lang]/(dashboard)/(private)/dashboards/crm/page": {
+          "moduleId": "[project]/.next-internal/server/app/[lang]/(dashboard)/(private)/dashboards/crm/page/actions.js { ACTIONS_MODULE0 => \"[project]/src/app/server/actions.ts [app-rsc] (ecmascript)\" } [app-rsc] (ecmascript)",
+          "async": false
+        }
+      },
+      "layer": {
+        "app/[lang]/(dashboard)/(private)/dashboards/crm/page": "rsc"
+      }
+    },
+    "7fb6ee144feec4a02c669b07b1bd7ebf7f94416c51": {
+      "workers": {
+        "app/[lang]/(dashboard)/(private)/dashboards/crm/page": {
+          "moduleId": "[project]/.next-internal/server/app/[lang]/(dashboard)/(private)/dashboards/crm/page/actions.js { ACTIONS_MODULE0 => \"[project]/src/app/server/actions.ts [app-rsc] (ecmascript)\" } [app-rsc] (ecmascript)",
+          "async": false
+        }
+      },
+      "layer": {
+        "app/[lang]/(dashboard)/(private)/dashboards/crm/page": "rsc"
+      }
+    },
+    "7f6e7e09439310eaadb90231fd5a0ee4818f4f6f63": {
+      "workers": {
+        "app/[lang]/(dashboard)/(private)/dashboards/crm/page": {
+          "moduleId": "[project]/.next-internal/server/app/[lang]/(dashboard)/(private)/dashboards/crm/page/actions.js { ACTIONS_MODULE0 => \"[project]/src/app/server/actions.ts [app-rsc] (ecmascript)\" } [app-rsc] (ecmascript)",
+          "async": false
+        }
+      },
+      "layer": {
+        "app/[lang]/(dashboard)/(private)/dashboards/crm/page": "rsc"
+      }
+    },
+    "7f20246dee3dc2020559292d9727ab5f84ede196d0": {
+      "workers": {
+        "app/[lang]/(dashboard)/(private)/dashboards/crm/page": {
+          "moduleId": "[project]/.next-internal/server/app/[lang]/(dashboard)/(private)/dashboards/crm/page/actions.js { ACTIONS_MODULE0 => \"[project]/src/app/server/actions.ts [app-rsc] (ecmascript)\" } [app-rsc] (ecmascript)",
+          "async": false
+        }
+      },
+      "layer": {
+        "app/[lang]/(dashboard)/(private)/dashboards/crm/page": "rsc"
+      }
+    },
+    "7fdf810b6b51b8d45946581f13ac8135f5ce3cb597": {
+      "workers": {
+        "app/[lang]/(dashboard)/(private)/dashboards/crm/page": {
+          "moduleId": "[project]/.next-internal/server/app/[lang]/(dashboard)/(private)/dashboards/crm/page/actions.js { ACTIONS_MODULE0 => \"[project]/src/app/server/actions.ts [app-rsc] (ecmascript)\" } [app-rsc] (ecmascript)",
+          "async": false
+        }
+      },
+      "layer": {
+        "app/[lang]/(dashboard)/(private)/dashboards/crm/page": "rsc"
+      }
+    },
+    "7fdf0102e0c32f6af284643fe793a368b4d114d802": {
+      "workers": {
+        "app/[lang]/(dashboard)/(private)/dashboards/crm/page": {
+          "moduleId": "[project]/.next-internal/server/app/[lang]/(dashboard)/(private)/dashboards/crm/page/actions.js { ACTIONS_MODULE0 => \"[project]/src/app/server/actions.ts [app-rsc] (ecmascript)\" } [app-rsc] (ecmascript)",
+          "async": false
+        }
+      },
+      "layer": {
+        "app/[lang]/(dashboard)/(private)/dashboards/crm/page": "rsc"
+      }
+    },
+    "7fbe1a2ebc3242ed7acd4b9800f13fd168034ff765": {
+      "workers": {
+        "app/[lang]/(dashboard)/(private)/dashboards/crm/page": {
+          "moduleId": "[project]/.next-internal/server/app/[lang]/(dashboard)/(private)/dashboards/crm/page/actions.js { ACTIONS_MODULE0 => \"[project]/src/app/server/actions.ts [app-rsc] (ecmascript)\" } [app-rsc] (ecmascript)",
+          "async": false
+        }
+      },
+      "layer": {
+        "app/[lang]/(dashboard)/(private)/dashboards/crm/page": "rsc"
+      }
+    },
+    "7f3bf0e95eeed54decd5128e59d7cfb3bcda90b25f": {
+      "workers": {
+        "app/[lang]/(dashboard)/(private)/dashboards/crm/page": {
+          "moduleId": "[project]/.next-internal/server/app/[lang]/(dashboard)/(private)/dashboards/crm/page/actions.js { ACTIONS_MODULE0 => \"[project]/src/app/server/actions.ts [app-rsc] (ecmascript)\" } [app-rsc] (ecmascript)",
+          "async": false
+        }
+      },
+      "layer": {
+        "app/[lang]/(dashboard)/(private)/dashboards/crm/page": "rsc"
+      }
+    },
+    "7f45d6ff57eb4a7f22669ce4345eac5f4bbfb22d16": {
+      "workers": {
+        "app/[lang]/(dashboard)/(private)/dashboards/crm/page": {
+          "moduleId": "[project]/.next-internal/server/app/[lang]/(dashboard)/(private)/dashboards/crm/page/actions.js { ACTIONS_MODULE0 => \"[project]/src/app/server/actions.ts [app-rsc] (ecmascript)\" } [app-rsc] (ecmascript)",
+          "async": false
+        }
+      },
+      "layer": {
+        "app/[lang]/(dashboard)/(private)/dashboards/crm/page": "rsc"
+      }
+    }
+  },
+  "edge": {}
+}

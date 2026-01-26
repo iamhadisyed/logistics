@@ -1,0 +1,11 @@
+{
+  "version": 3,
+  "sources": [],
+  "sections": [
+    {"offset": {"line": 7, "column": 0}, "map": {"version":3,"sources":["file://C%3A/daakia/dakia_app01/src/configs/i18n.ts"],"sourcesContent":["export const i18n = {\r\n  defaultLocale: 'en',\r\n  locales: ['en', 'fr', 'ar'],\r\n  langDirection: {\r\n    en: 'ltr',\r\n    fr: 'ltr',\r\n    ar: 'rtl'\r\n  }\r\n} as const\r\n\r\nexport type Locale = (typeof i18n)['locales'][number]\r\n"],"names":[],"mappings":";;;AAAO,MAAM,OAAO;IAClB,eAAe;IACf,SAAS;QAAC;QAAM;QAAM;KAAK;IAC3B,eAAe;QACb,IAAI;QACJ,IAAI;QACJ,IAAI;IACN;AACF"}},
+    {"offset": {"line": 26, "column": 0}, "map": {"version":3,"sources":[],"names":[],"mappings":"A"}},
+    {"offset": {"line": 32, "column": 0}, "map": {"version":3,"sources":["file://C%3A/daakia/dakia_app01/src/components/LangRedirect.tsx"],"sourcesContent":["'use client'\r\n\r\n// Next Imports\r\nimport { redirect, usePathname } from 'next/navigation'\r\n\r\n// Config Imports\r\nimport { i18n } from '@configs/i18n'\r\n\r\nconst LangRedirect = () => {\r\n  const pathname = usePathname()\r\n\r\n  const redirectUrl = `/${i18n.defaultLocale}${pathname}`\r\n\r\n  redirect(redirectUrl)\r\n}\r\n\r\nexport default LangRedirect\r\n"],"names":[],"mappings":";;;AAEA,eAAe;AACf;AAEA,iBAAiB;AACjB;;AANA;;;AAQA,MAAM,eAAe;;IACnB,MAAM,WAAW,CAAA,GAAA,qIAAA,CAAA,cAAW,AAAD;IAE3B,MAAM,cAAc,CAAC,CAAC,EAAE,yHAAA,CAAA,OAAI,CAAC,aAAa,GAAG,UAAU;IAEvD,CAAA,GAAA,qIAAA,CAAA,WAAQ,AAAD,EAAE;AACX;GANM;;QACa,qIAAA,CAAA,cAAW;;;KADxB;uCAQS"}},
+    {"offset": {"line": 61, "column": 0}, "map": {"version":3,"sources":[],"names":[],"mappings":"A"}},
+    {"offset": {"line": 71, "column": 0}, "map": {"version":3,"sources":["file://C%3A/daakia/dakia_app01/node_modules/next/navigation.js"],"sourcesContent":["module.exports = require('./dist/client/components/navigation')\n"],"names":[],"mappings":"AAAA,OAAO,OAAO","ignoreList":[0]}},
+    {"offset": {"line": 72, "column": 0}, "map": {"version":3,"sources":[],"names":[],"mappings":"A"}}]
+}

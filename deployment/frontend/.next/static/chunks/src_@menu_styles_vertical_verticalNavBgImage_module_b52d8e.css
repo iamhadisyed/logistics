@@ -1,0 +1,15 @@
+/* [project]/src/@menu/styles/vertical/verticalNavBgImage.module.css [app-client] (css) */
+.verticalNavBgImage-module__nBlmca__root {
+  inline-size: 100%;
+  block-size: 100%;
+  position: absolute;
+  inset-block-start: 0;
+  inset-inline-start: 0;
+  -o-object-fit: cover;
+  object-fit: cover;
+  -o-object-position: center;
+  object-position: center;
+  z-index: 2;
+}
+
+/*# sourceMappingURL=src_%40menu_styles_vertical_verticalNavBgImage_module_b52d8e.css.map*/

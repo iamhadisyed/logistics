@@ -1,0 +1,4 @@
+        <ServicesClassAWB>
+          <ServiceCode>@code</ServiceCode>
+          <ServiceDetails>@details</ServiceDetails>
+        </ServicesClassAWB>

@@ -1,0 +1,127 @@
+<?php
+/*******************************************************************************
+ * Copyright 2009-2018 Amazon Services. All Rights Reserved.
+ * Licensed under the Apache License, Version 2.0 (the "License"); 
+ *
+ * You may not use this file except in compliance with the License. 
+ * You may obtain a copy of the License at: http://aws.amazon.com/apache2.0
+ * This file is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR 
+ * CONDITIONS OF ANY KIND, either express or implied. See the License for the 
+ * specific language governing permissions and limitations under the License.
+ *******************************************************************************
+ * PHP Version 5
+ * @category Amazon
+ * @package  MWS Subscriptions Service
+ * @version  2013-07-01
+ * Library Version: 2013-11-01
+ * Generated: Tue Oct 02 08:13:42 PDT 2018
+ */
+
+/**
+ * Register Destination Sample
+ */
+
+require_once('../includes/autoload/MWSSubscriptionsService/Samples/.config.inc.php');
+require_once('../includes/autoload/MWSSubscriptionsService/client.php');
+require_once('../includes/autoload/MWSSubscriptionsService/Model/RegisterDestinationInput.php');
+require_once('../includes/autoload/MWSSubscriptionsService/Model/Destination.php');
+require_once('../includes/autoload/MWSSubscriptionsService/Model/AttributeKeyValue.php');
+require_once('../includes/autoload/MWSSubscriptionsService/Model/AttributeKeyValueList.php');
+
+/************************************************************************
+ * 
+ * Instantiate Implementation of MWSSubscriptionsService
+ *
+ * AWS_ACCESS_KEY_ID and AWS_SECRET_ACCESS_KEY constants
+ * are defined in the .config.inc.php located in the same
+ * directory as this sample
+ ***********************************************************************/
+// More endpoints are listed in the MWS Developer Guide
+// North America:
+//$serviceUrl = "https://mws.amazonservices.com/Subscriptions/2013-07-01";
+// Europe
+$serviceUrl = "https://mws-eu.amazonservices.com/Subscriptions/2013-07-01";
+// Japan
+//$serviceUrl = "https://mws.amazonservices.jp/Subscriptions/2013-07-01";
+// China
+//$serviceUrl = "https://mws.amazonservices.com.cn/Subscriptions/2013-07-01";
+
+
+ $config = array (
+   'ServiceURL' => $serviceUrl,
+   'ProxyHost' => null,
+   'ProxyPort' => -1,
+   'ProxyUsername' => null,
+   'ProxyPassword' => null,
+   'MaxErrorRetry' => 3,
+ );
+
+ $service = new MWSSubscriptionsService_Client(
+        'AKIAJBUWT3ZBRDV3QITA',
+        '6y9yurr8KHXaj9Rvt83ACZyZYw2gamkvpXtu1tIe',
+        'oneworld',
+        '2',
+        $config);
+
+/************************************************************************
+ * Uncomment to try out Mock Service that simulates MWSSubscriptionsService
+ * responses without calling MWSSubscriptionsService service.
+ *
+ * Responses are loaded from local XML files. You can tweak XML files to
+ * experiment with various outputs during development
+ *
+ * XML files available under MWSSubscriptionsService/Mock tree
+ *
+ ***********************************************************************/
+ // $service = new MWSSubscriptionsService_Mock();
+
+/************************************************************************
+ * Setup request parameters and uncomment invoke to try out
+ * sample for Register Destination Action
+ ***********************************************************************/
+ // @TODO: set request. Action can be passed as MWSSubscriptionsService_Model_RegisterDestination
+ $request = new MWSSubscriptionsService_Model_RegisterDestinationInput();
+ $request->setSellerId('A3LX344APRTG2Z');
+ $request->setMarketplaceId('A1F83G8C2ARO7P'); 
+ 
+ $keyvalue = new MWSSubscriptionsService_Model_AttributeKeyValue();
+ $keyvalue->setKey('sqsQueueUrl');
+ $keyvalue->setValue('https://sqs.us-east-2.amazonaws.com/095611935099/order_notification');
+ 
+ $attributes = new MWSSubscriptionsService_Model_AttributeKeyValueList();
+ $attributes->setmember($keyvalue);
+ 
+ $destination = new MWSSubscriptionsService_Model_Destination();
+ $destination->setDeliveryChannel('SQS');
+ $destination->setAttributeList($attributes);
+ 
+ // object or array of parameters
+ $request->setDestination($destination);
+ invokeRegisterDestination($service, $request);
+
+/**
+  * Get Register Destination Action Sample
+  * Gets competitive pricing and related information for a product identified by
+  * the MarketplaceId and ASIN.
+  *
+  * @param MWSSubscriptionsService_Interface $service instance of MWSSubscriptionsService_Interface
+  * @param mixed $request MWSSubscriptionsService_Model_RegisterDestination or array of parameters
+  */
+
+  function invokeRegisterDestination(MWSSubscriptionsService_Interface $service, $request)
+  {
+      try {
+        $response = $service->RegisterDestination($request);
+        $dom = new DOMDocument();
+        $dom->loadXML($response->toXML());
+        $dom->preserveWhiteSpace = false;
+        $dom->formatOutput = true;
+        echo $dom->saveXML();
+        echo("ResponseHeaderMetadata: " . $response->getResponseHeaderMetadata() . "\n");
+
+     } catch (MWSSubscriptionsService_Exception $ex) {
+        $ex->getMessage();
+        $ex->getStatusCode();        
+     }
+ }
+
