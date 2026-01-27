@@ -10,10 +10,10 @@ const prisma = new PrismaClient()
 
 export const authOptions: NextAuthOptions = {
   adapter: PrismaAdapter(prisma) as Adapter,
-  
+
   // Set the base URL for NextAuth
   secret: process.env.NEXTAUTH_SECRET,
-  
+
   // Ensure the URL is set correctly
   ...(process.env.NEXTAUTH_URL && { url: process.env.NEXTAUTH_URL }),
 
@@ -54,7 +54,7 @@ export const authOptions: NextAuthOptions = {
 
           const data = await res.json()
 
-          if (res.status === 401) {
+          if (res.status !== 200) {
             throw new Error(JSON.stringify(data))
           }
 

@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Address extends Model
 {
+    public $timestamps = false;
     protected $fillable = [
         'phone_number',
         'company',
