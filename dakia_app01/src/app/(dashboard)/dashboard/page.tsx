@@ -9,15 +9,14 @@ import {
     Grid,
     Paper,
     CircularProgress,
+    Icon,
 } from '@mui/material';
-import {
-    LocalShipping as ShippingIcon,
-    CheckCircle as DeliveredIcon,
-    Pending as PendingIcon,
-    Cancel as CancelledIcon,
-} from '@mui/icons-material';
 import { consignmentApi } from '@/lib/api';
 import { CONSIGNMENT_STATUS } from '@/types';
+
+const ShippingIcon = ({ sx }: { sx?: object }) => <Icon sx={sx}>local_shipping</Icon>;
+const DeliveredIcon = ({ sx }: { sx?: object }) => <Icon sx={sx}>check_circle</Icon>;
+const PendingIcon = ({ sx }: { sx?: object }) => <Icon sx={sx}>pending</Icon>;
 
 interface DashboardStats {
     total: number;

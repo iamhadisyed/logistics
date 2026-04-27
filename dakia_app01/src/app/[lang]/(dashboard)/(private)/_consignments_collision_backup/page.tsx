@@ -20,18 +20,18 @@ import {
     InputAdornment,
     MenuItem,
     CircularProgress,
+    Icon,
 } from '@mui/material';
-import {
-    Add as AddIcon,
-    Search as SearchIcon,
-    Visibility as ViewIcon,
-    Edit as EditIcon,
-    Delete as DeleteIcon,
-} from '@mui/icons-material';
 import { useRouter } from 'next/navigation';
 import { consignmentApi } from '@/lib/api';
 import { CONSIGNMENT_STATUS_LABELS } from '@/types';
 import type { Consignment } from '@/types';
+
+const AddIcon = () => <Icon fontSize='small'>add</Icon>;
+const SearchIcon = () => <Icon fontSize='small'>search</Icon>;
+const ViewIcon = () => <Icon fontSize='small'>visibility</Icon>;
+const EditIcon = () => <Icon fontSize='small'>edit</Icon>;
+const DeleteIcon = () => <Icon fontSize='small'>delete</Icon>;
 
 export default function ConsignmentsPage() {
     const router = useRouter();
