@@ -12,11 +12,13 @@ import {
     MenuItem,
     CircularProgress,
     Alert,
+    Icon,
 } from '@mui/material';
-import { Add as AddIcon } from '@mui/icons-material';
 import { useRouter } from 'next/navigation';
 import { consignmentApi, serviceApi } from '@/lib/api';
 import type { Service, Country } from '@/types';
+
+const AddIcon = () => <Icon fontSize='small'>add</Icon>;
 
 export default function CreateConsignmentPage() {
     const router = useRouter();

@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dakia Logistics</title>
+    <style>
+      body { font-family: Arial, sans-serif; margin: 0; background: #f7f9fc; color: #1f2937; }
+      .wrap { max-width: 760px; margin: 10vh auto; background: #fff; border-radius: 12px; padding: 28px; box-shadow: 0 10px 30px rgba(0,0,0,.08); }
+      h1 { margin: 0 0 10px; font-size: 28px; }
+      p { line-height: 1.6; }
+      .ok { color: #166534; font-weight: 700; }
+      .warn { color: #92400e; font-weight: 700; }
+      code { background: #eef2ff; padding: 2px 6px; border-radius: 6px; }
+      .small { font-size: 14px; color: #6b7280; }
+    </style>
+  </head>
+  <body>
+    <main class="wrap">
+      <h1>Dakia deployment is live</h1>
+      <p class="ok">Frontend static hosting is working on GoDaddy.</p>
+      <p>
+        Your Laravel API should be hosted under <code>/api</code> or a dedicated API subdomain.
+        For full Next.js admin features, deploy frontend on a Node-enabled host (for example Vercel)
+        and connect it to this GoDaddy API.
+      </p>
+      <p class="warn">Current mode: uploadable fallback frontend for no-Node shared hosting.</p>
+      <p class="small">See <code>deployment-godaddy/GO_LIVE_GUIDE.md</code> for complete production steps.</p>
+    </main>
+  </body>
+</html>

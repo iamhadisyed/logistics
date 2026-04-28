@@ -85,8 +85,8 @@ const Login = ({ mode }: { mode: Mode }) => {
   } = useForm<FormData>({
     resolver: valibotResolver(schema),
     defaultValues: {
-      email: 'admin@materialize.com',
-      password: 'admin'
+      email: 'admin@example.com',
+      password: 'password'
     }
   })
 
@@ -116,7 +116,13 @@ const Login = ({ mode }: { mode: Mode }) => {
       router.replace(getLocalizedUrl(redirectURL, locale as Locale))
     } else {
       if (res?.error) {
-        const error = JSON.parse(res.error)
+        let error;
+        try {
+          error = JSON.parse(res.error);
+        } catch (e) {
+          // If not JSON, treat it as a simple message object or generic error
+          error = { message: [res.error] };
+        }
 
         setErrorState(error)
       }
@@ -160,7 +166,7 @@ const Login = ({ mode }: { mode: Mode }) => {
 
           <form
             noValidate
-            action={() => {}}
+            action={() => { }}
             autoComplete='off'
             onSubmit={handleSubmit(onSubmit)}
             className='flex flex-col gap-5'

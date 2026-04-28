@@ -20,7 +20,9 @@ import TextField from '@mui/material/TextField'
 import MenuItem from '@mui/material/MenuItem'
 import Divider from '@mui/material/Divider'
 import IconButton from '@mui/material/IconButton'
-import DeleteIcon from '@mui/icons-material/Delete'
+import Icon from '@mui/material/Icon'
+
+const DeleteIcon = () => <Icon fontSize='small'>delete</Icon>
 
 const ServiceRoutingPage = () => {
     const { id } = useParams()

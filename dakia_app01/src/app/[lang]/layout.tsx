@@ -33,6 +33,12 @@ export const metadata = {
   description: 'Materialize - Material Next.js Admin Template'
 }
 
+export const dynamicParams = false
+
+export function generateStaticParams() {
+  return i18n.locales.map(lang => ({ lang }))
+}
+
 const RootLayout = async (props: ChildrenType & { params: Promise<{ lang: Locale }> }) => {
   const params = await props.params
 
