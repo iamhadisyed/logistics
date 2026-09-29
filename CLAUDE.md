@@ -53,23 +53,14 @@ packages (most recent work, per git log).
 
 ## 4. Audit findings (verified by reading the actual code, not just docs)
 
-### ⚠️ Biggest open conflict: Consignment vs Shipment
-There are **two parallel implementations** of the core "create a booking" entity:
-- **`Consignment` model** → legacy-aligned, meant to point at the real legacy
-  `consignments` table (per `PROJECT_ROADMAP.md`'s stated goal).
-- **`Shipment` model** (`app/Models/Shipment.php` → `protected $table = 'shipments';`)
-  → a **brand-new, non-legacy table set** (`shipments`, `shipment_parcels`,
-  `shipment_items`, `shipment_history`), created in its own separate migration.
-
-**Only `Shipment` is actually wired up**: `routes/api.php` registers
-`ShipmentController` (`/shipments` resource + `/shipments/{id}/generate-label`).
-`ConsignmentController` (both `Api/` and `Logistics/` versions) exist as files
-but are **not registered in any route**. Same for `Logistics/AddressController`.
-
-**This needs a decision from the user before more work builds on top of it**:
-keep building on `Shipment` (new schema, but momentum/working code already
-exists) vs switch back to `Consignment` (legacy-aligned, matches the stated
-"preserve legacy tables" goal, but has no working routes yet).
+### ✅ RESOLVED (2026-09-29): Consignment vs Shipment
+There were **two parallel implementations** of the core "create a booking"
+entity (`Consignment` = legacy-aligned, `Shipment` = new non-legacy tables).
+**User decision: `Shipment` is the authoritative path forward.** The legacy
+`Consignment` model/routes are deprecated for new development — the old
+Core PHP files remain only as read-only reference for business-rule logic
+(pricing formulas, label rules, routing logic, etc.), not as a schema to
+build against. See `MODULE_COMPLETION_TRACKER.md` for full module status.
 
 ### Frontend route duplication (needs cleanup)
 Three separate route trees exist for what should be one feature:
