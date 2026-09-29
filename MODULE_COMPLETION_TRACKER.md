@@ -91,7 +91,7 @@ Core PHP files remain as read-only reference for business-rule logic only.
 | 5 | Agents & Sales | 11 | Not Started | `Agent` model exists, no controller/routes. |
 | 6 | Carriers | 7 | **Built (untested)** | Real CRUD, real `carrier` table, real frontend page. No automated tests. |
 | 7 | Services & Routing | 18 | **Built (untested)** | Real CRUD + availability + routing endpoints exist. Frontend coverage partial. No tests. |
-| 8 | Tariffs & Pricing (incl. cost/sales tariffs, calculator) | 38 | **In Progress (correction)** | `app/Services/PricingEngine.php` DOES exist (I was wrong earlier — I hadn't listed `app/Services/` before writing the first tracker version). Surcharge/insurance math is real; `getBaseRate()` and `getRemoteAreaCharge()` are still TODO stubs returning hardcoded values. Built against deprecated `Consignment`, not yet ported to `Shipment`. |
+| 8 | Tariffs & Pricing (incl. cost/sales tariffs, calculator) | 38 | **Tested (isolated) + integration-tested at booking time** | `PricingEngine` rewritten against `Shipment`. `getBaseRate()` is now a REAL lookup: `carrier_zones_countries` resolves country→zone, `tariffs`+`tariffs_details` resolve the weight-banded rate — no hardcoded fallback, throws `TariffNotConfiguredException` when nothing's configured (never fakes a price). Fuel surcharge (real, from `service.fuel_surcharge`) applies on top. Wired into `ShipmentController::store()` as best-effort — booking succeeds even with no tariff configured (logs a warning, `total_price` stays null), doesn't block the customer. New `shipment_charges` table/model records the breakdown (the old `ConsignmentCharge` model's columns didn't even match the real `consignment_charges` legacy table — a third schema-mismatch bug found this session, not fixed since Consignment is deprecated anyway). 11/11 `ShipmentControllerTest` + 6/6 `PricingEngineTest` passing, including a real end-to-end "seed a tariff → book → get a real calculated price" test. **Deferred, documented not faked**: remote-area surcharge and insurance (Shipment has no `is_insured`/`value` fields yet — different gap from pricing lookup itself), postcode-level zone overrides (country-level only for now). |
 | 9 | Remote Area Charges | 6 | Not Started | — |
 | 10 | Ratebands / Extra Charges | 3 | Not Started | — |
 | 11 | Consignments / Bookings | 8 | **Deprecated** | Legacy `Consignment` model/routes are NOT the path forward (user decision 2026-09-29). `Shipment` is now the authoritative booking entity — see module below. |
@@ -200,13 +200,18 @@ the in-memory model's `id` null. Fixed to `true` (kept `id` in `$fillable`
 so legacy-data seeders can still assign explicit ids). Verified via tinker
 before and after.
 
-**Next concrete step, not yet done**: the actual `getBaseRate()` tariff
-lookup still needs (a) a `Tariff`/`TariffDetail` model — `Tariff` is
-currently an unused dangling import in `PricingEngine.php` pointing at a
-class that doesn't exist at all, and (b) zone resolution — `tariffs_details`
-rates are keyed by `to_zone_id`, and how `country_id` maps to a zone hasn't
-been verified yet. Stopping to checkpoint real, tested progress rather than
-guessing at zone logic without checking it first.
+**RESOLVED same day**: real `Tariff`/`TariffDetail`/`CarrierZone`/
+`CarrierZoneCountry` models added. Zone resolution confirmed via
+`carrier_zones` + `carrier_zones_countries` (found by searching legacy
+`carrier_zones.php`/`countries_zones.php`) rather than guessed at. See
+module 8 above for the full picture, including a third schema-mismatch bug
+found and deliberately NOT fixed (ConsignmentCharge vs. real
+consignment_charges columns — moot, Consignment path is deprecated).
+
+### Running total after this pass
+37 failed / 28 passed → **31 failed / 36 passed** (net: 8 more tests
+passing — 6 PricingEngineTest + 2 ShipmentControllerTest integration tests
+— zero regressions, full suite re-run to confirm).
 
 ## 🔒 Blocking decision needed before modules 8, 11, 12, 13 can start
 

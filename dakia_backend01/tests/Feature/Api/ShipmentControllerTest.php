@@ -3,9 +3,13 @@
 namespace Tests\Feature\Api;
 
 use App\Models\Carrier;
+use App\Models\CarrierZone;
+use App\Models\CarrierZoneCountry;
 use App\Models\Country;
 use App\Models\Service;
 use App\Models\Shipment;
+use App\Models\Tariff;
+use App\Models\TariffDetail;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Storage;
@@ -257,5 +261,71 @@ class ShipmentControllerTest extends TestCase
         $showResponse->assertStatus(200)
             ->assertJsonPath('data.label_generated', true)
             ->assertJsonPath('data.status', 'label_generated');
+    }
+
+    /** @test */
+    public function booking_succeeds_without_a_price_when_no_tariff_is_configured()
+    {
+        // No tariff/zone seeded in this test's setUp — pricing must not
+        // block booking creation.
+        $response = $this->actingAs($this->user, 'sanctum')
+            ->postJson('/api/shipments', $this->validPayload());
+
+        $response->assertStatus(201)
+            ->assertJsonPath('data.total_price', null);
+    }
+
+    /** @test */
+    public function it_calculates_and_stores_a_real_price_when_a_tariff_is_configured()
+    {
+        $zone = new CarrierZone();
+        $zone->forceFill([
+            'id' => 1,
+            'carrier_id' => $this->carrier->id,
+            'name' => 'Zone A',
+            'status' => true,
+        ])->save();
+
+        $zoneCountry = new CarrierZoneCountry();
+        $zoneCountry->forceFill([
+            'id' => 1,
+            'country_id' => $this->country->id,
+            'carrier_zone_id' => $zone->id,
+        ])->save();
+
+        $tariff = new Tariff();
+        $tariff->forceFill([
+            'id' => 1,
+            'user_account_id' => 148,
+            'carrier_id' => $this->carrier->id,
+            'service_id' => $this->service->id,
+            'tariff_type' => 'customer',
+            'status' => true,
+        ])->save();
+
+        $detail = new TariffDetail();
+        $detail->forceFill([
+            'id' => 1,
+            'tariffs_id' => $tariff->id,
+            'from_zone_id' => 0,
+            'to_zone_id' => $zone->id,
+            'weight_from' => 0,
+            'weight_to' => 10,
+            'weight_cost' => 18.75,
+            'piece_cost' => 0,
+        ])->save();
+
+        $response = $this->actingAs($this->user, 'sanctum')
+            ->postJson('/api/shipments', $this->validPayload());
+
+        $response->assertStatus(201)
+            ->assertJsonPath('data.total_price', 18.75);
+
+        $shipmentId = $response->json('data.id');
+        $this->assertDatabaseHas('shipment_charges', [
+            'shipment_id' => $shipmentId,
+            'charge_type' => 'base_rate',
+            'amount' => 18.75,
+        ]);
     }
 }

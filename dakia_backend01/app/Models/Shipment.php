@@ -66,6 +66,28 @@ class Shipment extends Model
         return $this->belongsTo(Service::class, 'service_id');
     }
 
+    public function charges(): HasMany
+    {
+        return $this->hasMany(ShipmentCharge::class, 'shipment_id');
+    }
+
+    /**
+     * Total chargeable weight across all parcels: for each parcel, the
+     * greater of its actual weight and its volumetric weight
+     * (L*W*H / service.volumetric_denominator, legacy default 5000).
+     */
+    public function getChargeableWeight(): float
+    {
+        $denominator = $this->service?->volumetric_denominator ?: 5000;
+
+        return (float) $this->parcels->sum(function (ShipmentParcel $parcel) use ($denominator) {
+            $actual = (float) $parcel->weight;
+            $volumetric = ((float) $parcel->length * (float) $parcel->width * (float) $parcel->height) / $denominator;
+
+            return max($actual, $volumetric);
+        });
+    }
+
     public function history(): HasMany
     {
         return $this->hasMany(ShipmentHistory::class, 'shipment_id');
