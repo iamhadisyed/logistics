@@ -21,6 +21,7 @@ class Shipment extends Model
         'status',
         'label_generated',
         'label_generated_at',
+        'label_path',
         // Receiver Address
         'company', 'contact', 'email', 'telephone',
         'address_line_1', 'address_line_2', 'address_line_3',

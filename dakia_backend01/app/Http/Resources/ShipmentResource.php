@@ -25,7 +25,7 @@ class ShipmentResource extends JsonResource
             'status' => $this->status ?? 'booked',
             'label_generated' => $this->label_generated ?? false,
             'label_generated_at' => $this->label_generated_at ?? null,
-            'label_url' => $this->label_generated ? ("/labels/LBL-{$this->uuid}.pdf") : null,
+            'label_url' => $this->label_generated ? route('shipments.label.download', $this->id) : null,
             'parcels_count' => $this->whenCounted('parcels'),
             'items_count' => $this->whenLoaded('parcels', function() {
                 if (!$this->parcels || $this->parcels->isEmpty()) {

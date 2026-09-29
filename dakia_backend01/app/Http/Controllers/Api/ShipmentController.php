@@ -7,15 +7,21 @@ use App\Models\Shipment;
 use App\Models\ShipmentHistory;
 use App\Http\Requests\StoreShipmentRequest;
 use App\Http\Resources\ShipmentResource;
+use App\Services\Labels\LabelGeneratorInterface;
 use Illuminate\Http\Request;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Storage;
 use App\Models\ShipmentParcel;
 use App\Models\ShipmentItem;
 
 class ShipmentController extends Controller
 {
+    public function __construct(private LabelGeneratorInterface $labelGenerator)
+    {
+    }
+
     /**
      * List consignments with search and sorting
      */
@@ -170,11 +176,11 @@ class ShipmentController extends Controller
     }
 
     /**
-     * Generate shipping label
+     * Generate a real PDF shipping label via LabelGeneratorInterface.
      */
     public function generateLabel($id): JsonResponse
     {
-        $consignment = Shipment::findOrFail($id);
+        $consignment = Shipment::with('parcels.items')->findOrFail($id);
 
         if ($consignment->label_generated) {
             return response()->json([
@@ -182,13 +188,25 @@ class ShipmentController extends Controller
             ], 422);
         }
 
-        // Simulating label generation call to legacy service
-        
-        return DB::transaction(function () use ($consignment) {
+        try {
+            $labelPath = $this->labelGenerator->generateLabel($consignment);
+        } catch (\Exception $e) {
+            Log::error('Label generation failed: ' . $e->getMessage(), [
+                'shipment_id' => $consignment->id,
+                'trace' => $e->getTraceAsString(),
+            ]);
+
+            return response()->json([
+                'message' => 'Failed to generate label: ' . $e->getMessage(),
+            ], 500);
+        }
+
+        return DB::transaction(function () use ($consignment, $labelPath) {
             $consignment->update([
                 'label_generated' => true,
                 'label_generated_at' => now(),
-                'status' => 'label_generated'
+                'status' => 'label_generated',
+                'label_path' => $labelPath,
             ]);
 
             try {
@@ -203,9 +221,30 @@ class ShipmentController extends Controller
 
             return response()->json([
                 'message' => 'Label generated successfully',
-                'label_url' => "/labels/LBL-{$consignment->uuid}.pdf",
+                'label_url' => route('shipments.label.download', $consignment->id),
                 'data' => new ShipmentResource($consignment)
             ]);
         });
+    }
+
+    /**
+     * Stream the generated label PDF for download.
+     */
+    public function downloadLabel($id)
+    {
+        $consignment = Shipment::findOrFail($id);
+
+        if (!$consignment->label_generated || !$consignment->label_path) {
+            abort(404, 'Label has not been generated for this shipment.');
+        }
+
+        if (!Storage::disk('local')->exists($consignment->label_path)) {
+            abort(404, 'Label file is missing.');
+        }
+
+        return Storage::disk('local')->download(
+            $consignment->label_path,
+            "LBL-{$consignment->reference}.pdf"
+        );
     }
 }

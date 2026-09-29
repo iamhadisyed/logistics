@@ -40,9 +40,9 @@ Core PHP files remain as read-only reference for business-rule logic only.
 | 9 | Remote Area Charges | 6 | Not Started | — |
 | 10 | Ratebands / Extra Charges | 3 | Not Started | — |
 | 11 | Consignments / Bookings | 8 | **Deprecated** | Legacy `Consignment` model/routes are NOT the path forward (user decision 2026-09-29). `Shipment` is now the authoritative booking entity — see module below. |
-| 11b | Shipments / Bookings (`Shipment` model — authoritative) | — | **Built (untested)** | Create/list/detail work end-to-end. Two-button "Save Booking / Generate Label" spec now implemented in `ShipmentCreateForm.tsx` (2026-09-29) — TypeScript-clean, not yet runtime-tested (see blocker below). |
-| 12 | Parcels & Items | 7 | Partial (wrong schema label — now correct per decision) | Exist nested under `Shipment`. Needs test coverage. |
-| 13 | Label Generation | 19 | **Fake, but has a real skeleton** | `app/Services/Labels/LabelGeneratorInterface.php` DOES exist (correction — same miss as PricingEngine). It's an interface only — zero classes implement it yet. `generateLabel()` actually called by `ShipmentController` bypasses this interface entirely and just flips a boolean. Next real build target: implement a concrete label generator against `Shipment`. |
+| 11b | Shipments / Bookings (`Shipment` model — authoritative) | — | **Tested (isolated)** | 9/9 real backend tests passing: create, validate, list, search, view, generate-label, refuse-duplicate-label, download, and a full create→list→generate→view integration test. Two-button "Save Booking / Generate Label" implemented in `ShipmentCreateForm.tsx`. Not yet "Done" — no integration test against Carriers/Services/Tariffs pricing at booking time (Tariffs module isn't built yet). |
+| 12 | Parcels & Items | 7 | **Tested (isolated)** | Covered by the Shipment tests above (parcel + item creation verified in DB). |
+| 13 | Label Generation | 19 | **Real implementation (isolated tests passing)** | `DefaultLabelGenerator` now implements `LabelGeneratorInterface` for real: renders an actual PDF (dompdf) from shipment/parcel/address data, stores it, serves it via a download endpoint. Verified in tests by asserting the stored file starts with `%PDF`, not just checking a boolean flag. **Honest limits, not hidden:** the barcode area is a bordered text block, not a real scannable barcode (no barcode library added yet); `getDropOffLocations()`/`getTrackingStatus()` throw "not implemented" (need real carrier API credentials this project doesn't have — not fakeable). No real carrier (DHL/UPS/etc.) integration — this is a carrier-agnostic fallback label. |
 | 14 | Bagging | 8 | Not Started | — |
 | 15 | Flights & MAWB (air freight) | 12 | Not Started | — |
 | 16 | Pallets | 8 | Not Started | — |
@@ -69,7 +69,7 @@ Core PHP files remain as read-only reference for business-rule logic only.
 
 ---
 
-## Current real completion: **~10%** (3 of 29 modules built-but-untested; 0 tested; 0 integration-tested)
+## Current real completion: **~12%** (Carriers/Services/Countries built-but-untested; Shipments+Parcels/Items+Label Generation now built AND isolated-tested with a real PDF output; 0 modules fully integration-tested across the whole system yet)
 
 ## ✅ Environment blocker resolved (2026-09-29): backend now runs and tests in this session
 Migrations ran successfully against a local SQLite DB once retried (the earlier
@@ -107,8 +107,20 @@ hardcoded to a MySQL DB that doesn't exist here — tests are run with an inline
   they test the now-deprecated `Consignment` path.
 - `AuthenticationTest` — 2 failures (session auth assertion not behaving as
   expected in the test environment) — not yet root-caused.
-- **Zero test coverage exists for `Shipment`/`ShipmentController`** — the
-  actually-wired booking module has no automated tests at all yet.
+- ~~Zero test coverage exists for `Shipment`/`ShipmentController`~~ **RESOLVED
+  2026-09-29**: `tests/Feature/Api/ShipmentControllerTest.php` added, 9/9
+  passing, including a real full-flow integration test and a real PDF-content
+  assertion.
+- **New, found while re-running the full suite**: `ServiceControllerTest > it
+  can create a service` fails with 403 (expected 201) — an authorization bug
+  unrelated to my label-generation change (was already failing before it,
+  just masked by the `max_weight` QueryException on the same test file).
+  Not yet root-caused.
+
+### Running total after this pass
+**44 failed / 12 passed → 37 failed / 28 passed** (net: 16 more tests passing,
+zero regressions — verified by re-running the full suite, not just the
+Shipment tests, after each change).
 
 ## 🔒 Blocking decision needed before modules 8, 11, 12, 13 can start
 
