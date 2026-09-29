@@ -17,6 +17,61 @@ Status values: `Not Started` / `In Progress` / `Built (untested)` /
 
 Last updated: 2026-09-29. Updated after every module milestone — not before.
 
+## 🎯 Priority order (set 2026-09-29, executing top-down without re-asking)
+
+Rationale: get the core revenue path (book → price → label → hand off) fully
+real first, since every other module either feeds it or depends on it. Then
+operational necessities, then money/admin, then integrations, then
+low-stakes content. Modules already Tested/Done are listed for sequencing
+context even though no more work is queued on them right now.
+
+**Tier 1 — Core booking & revenue path (build this first, in this order)**
+1. Shipments/Bookings + Parcels/Items — Tested (isolated). ✅ baseline done.
+2. Label Generation — real PDF, tested. ✅ baseline done (barcode/carrier-API
+   depth deferred, see module 13 notes).
+3. **Tariffs & Pricing — IN PROGRESS, current focus.** Nothing downstream
+   (accurate invoices, sales reporting, agent commissions) is trustworthy
+   until real prices are calculated instead of `PricingEngine`'s hardcoded
+   `10.00`/`5.00` stubs.
+4. Carriers, Services & Routing — Built (untested). Needs test coverage next
+   (blocked partly by the still-unresolved `services.max_weight` schema
+   question — module 8 note).
+
+**Tier 2 — Operational necessities (can't run the business day-to-day without these)**
+5. Manifest (handoff to carriers)
+6. Tracking (customer-facing status)
+7. Bagging
+8. Warehouses, Racks & Inventory
+9. Pre-Alerts
+10. Flights & MAWB (only if air freight is actually part of current ops —
+    confirm scope with user before building, it's a large module)
+
+**Tier 3 — Money & accounts**
+11. Invoicing & Billing (currently fake — hardcoded JSON, unregistered route)
+12. Payments & Finance
+13. Customer/Business Accounts (hierarchy, `user_accounts`)
+14. Remote Area Charges, Ratebands (sub-parts of pricing, can ride along with Tier 1.3)
+
+**Tier 4 — Admin & support**
+15. Admin Users
+16. Groups, Permissions & Roles + dynamic sidebar (backend real, frontend
+    wiring unconfirmed — see section 4)
+17. Agents & Sales
+18. Reporting (~20 report types)
+
+**Tier 5 — Integrations (defer until Tiers 1-4 are solid)**
+19. Marketplace Integrations (Amazon, eBay, WooCommerce, carrier APIs)
+20. Scanning
+21. Pallets
+
+**Tier 6 — Low priority / content**
+22. Countries/Postcodes/Geography (Countries done; postcodes/zones not built)
+23. CMS/Static Pages/Legal/Help/Language management
+
+**Not queued**: frontend template noise (Ecommerce, Invoice demo, Academy,
+Chat, Email, Kanban, Calendar) — recommend deleting rather than building out,
+pending user confirmation.
+
 ## ✅ Decided (2026-09-29): booking schema is `Shipment`
 User decision: **`Shipment` (the new `shipments`/`shipment_parcels`/
 `shipment_items` tables) is the real foundation going forward — NOT the
