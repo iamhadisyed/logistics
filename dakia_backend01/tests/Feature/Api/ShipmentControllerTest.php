@@ -2,7 +2,9 @@
 
 namespace Tests\Feature\Api;
 
+use App\Models\Carrier;
 use App\Models\Country;
+use App\Models\Service;
 use App\Models\Shipment;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -15,6 +17,8 @@ class ShipmentControllerTest extends TestCase
 
     protected User $user;
     protected Country $country;
+    protected Carrier $carrier;
+    protected Service $service;
 
     protected function setUp(): void
     {
@@ -37,6 +41,27 @@ class ShipmentControllerTest extends TestCase
             'changed_by' => 'test',
             'currency_id' => 1,
         ])->save();
+
+        $this->carrier = Carrier::factory()->create();
+
+        // Service::factory() hits the known-unresolved max_weight/tracking_flag
+        // schema gap (see MODULE_COMPLETION_TRACKER.md) — forceFill only the
+        // columns confirmed to exist in the real services migration instead
+        // of guessing at the ambiguous ones.
+        $this->service = new Service();
+        $this->service->forceFill([
+            'carrier_id' => $this->carrier->id,
+            'name' => 'Standard',
+            'code' => 'STD',
+            'type' => 'D',
+            'from_weight' => 0,
+            'to_weight' => 30,
+            'fuel_surcharge' => 0,
+            'fuel_surcharge_type' => 'p',
+            'max_length' => 100,
+            'max_width' => 100,
+            'max_height' => 100,
+        ])->save();
     }
 
     protected function validPayload(): array
@@ -45,6 +70,8 @@ class ShipmentControllerTest extends TestCase
             'consignment' => [
                 'customer_id' => 148,
                 'service_type' => 'Standard',
+                'carrier_id' => $this->carrier->id,
+                'service_id' => $this->service->id,
                 'warehouse_id' => 1,
                 'reference' => 'HAWB-TEST-001',
                 'notes' => 'Test shipment',

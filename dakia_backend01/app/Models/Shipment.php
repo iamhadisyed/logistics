@@ -15,6 +15,8 @@ class Shipment extends Model
         'uuid',
         'customer_id',
         'service_type',
+        'carrier_id',
+        'service_id',
         'warehouse_id',
         'reference',
         'notes',
@@ -52,6 +54,16 @@ class Shipment extends Model
     public function parcels(): HasMany
     {
         return $this->hasMany(ShipmentParcel::class, 'shipment_id');
+    }
+
+    public function carrier(): BelongsTo
+    {
+        return $this->belongsTo(Carrier::class, 'carrier_id');
+    }
+
+    public function service(): BelongsTo
+    {
+        return $this->belongsTo(Service::class, 'service_id');
     }
 
     public function history(): HasMany

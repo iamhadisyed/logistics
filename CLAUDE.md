@@ -140,18 +140,34 @@ reports are NOT yet ported).
    parcel-or-more, one-or-more items per parcel, "Save Booking" vs
    "Generate Label" as two distinct actions.
 
-## 6. Status of this handoff
+## 6. Status of this handoff (updated 2026-09-29 — this section was stale, said "no code changes yet" when there were)
 
-- A full read-only audit was completed in the cloud session (see section 4).
-- **No code changes have been made yet.** Git working tree was clean at last
-  check on `claude/ide-setup-question-0g7y2r`.
+- Real development has started. See `MODULE_COMPLETION_TRACKER.md` at repo
+  root for the authoritative, continuously-updated module-by-module status —
+  read that file, not just this summary, before doing further work.
+- Backend now actually runs and tests in a cloud session too: `composer
+  install` + `npm install` succeeded, a local SQLite DB is migrated, and
+  `DB_CONNECTION=sqlite DB_DATABASE=database/database.sqlite php artisan
+  test` is the working test command (repo's `phpunit.xml` still points at a
+  MySQL DB that doesn't exist here — use the env override, not phpunit.xml,
+  until someone fixes that file for real).
+- Concretely shipped so far: fixed a real missing-legacy-column bug
+  (`carriers.is_pallet`); implemented the two-button "Save Booking / Generate
+  Label" create-form workflow; replaced fake label generation with a real
+  PDF generator (`DefaultLabelGenerator`, dompdf) wired through
+  `LabelGeneratorInterface`; added the first real test coverage for the
+  Shipment module (9 tests, previously zero). Test suite: 37 failed / 28
+  passed as of the last run (pre-existing failures, not regressions — see
+  tracker for the breakdown, including one deliberately NOT auto-fixed:
+  a possible `services.max_weight`/`tracking_flag` schema gap left flagged
+  rather than guessed at).
 - The user has NOT yet shared his own full written description of "the main
-  idea" for comparison against these findings — that's still pending. If he
-  provides it in this local session, compare it point-by-point against
-  section 4 above and flag any mismatches.
-- **Immediate next decision needed from the user**: Consignment vs Shipment —
-  which one is the real path forward? Everything else (parcels, items, labels,
-  permissions tied to bookings) depends on that answer.
+  idea" for comparison against the findings in section 4. If he provides it,
+  compare it point-by-point and flag mismatches.
+- **Current focus**: Tariffs & Pricing (`app/Services/PricingEngine.php`) —
+  it exists and has real surcharge/insurance math, but `getBaseRate()` and
+  `getRemoteAreaCharge()` are still hardcoded stubs, and it's built against
+  the deprecated `Consignment` model rather than `Shipment`.
 
 ## 7. Local dev environment notes
 

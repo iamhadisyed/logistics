@@ -19,6 +19,8 @@ class ShipmentResource extends JsonResource
             'uuid' => $this->uuid ?? null,
             'customer_id' => $this->customer_id,
             'service_type' => $this->service_type,
+            'carrier_id' => $this->carrier_id ?? null,
+            'service_id' => $this->service_id ?? null,
             'warehouse_id' => $this->warehouse_id ?? null,
             'reference' => $this->reference,
             'notes' => $this->notes ?? null,

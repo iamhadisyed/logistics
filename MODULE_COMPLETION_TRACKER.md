@@ -122,6 +122,37 @@ hardcoded to a MySQL DB that doesn't exist here — tests are run with an inline
 zero regressions — verified by re-running the full suite, not just the
 Shipment tests, after each change).
 
+### Continued (same day): real carrier/service linkage + a second real bug
+Started implementing real `getBaseRate()` tariff lookup for `PricingEngine`
+and hit a structural gap: `shipments` had no `carrier_id`/`service_id`, only
+a free-text `service_type` string — couldn't join to `tariffs` without one.
+**User decision: add real FKs** (not fuzzy string matching). Implemented:
+- Migration: `shipments.carrier_id`, `shipments.service_id` (nullable FKs).
+- `Shipment` model: `carrier()`/`service()` relations, fillable updated.
+- `StoreShipmentRequest`: now requires + validates both against real tables.
+- `ShipmentCreateForm.tsx`: service `<Select>` now keyed by real `service_id`
+  (was keyed by name string, fragile if two services share a name), sends
+  `carrier_id`/`service_id` in the payload. TypeScript-clean.
+- `ShipmentControllerTest.php`: updated to create a real `Carrier`+`Service`
+  and assert the link — all 9 tests still pass.
+
+**Second real bug found while wiring this up**: `Service` model had
+`public $incrementing = false;` even though `services.id` IS a genuine
+auto-increment primary key in the migration. This silently broke every
+`Service::create()` that didn't manually pass an `id` — Eloquent would
+insert the row correctly but never read back the real generated id, leaving
+the in-memory model's `id` null. Fixed to `true` (kept `id` in `$fillable`
+so legacy-data seeders can still assign explicit ids). Verified via tinker
+before and after.
+
+**Next concrete step, not yet done**: the actual `getBaseRate()` tariff
+lookup still needs (a) a `Tariff`/`TariffDetail` model — `Tariff` is
+currently an unused dangling import in `PricingEngine.php` pointing at a
+class that doesn't exist at all, and (b) zone resolution — `tariffs_details`
+rates are keyed by `to_zone_id`, and how `country_id` maps to a zone hasn't
+been verified yet. Stopping to checkpoint real, tested progress rather than
+guessing at zone logic without checking it first.
+
 ## 🔒 Blocking decision needed before modules 8, 11, 12, 13 can start
 
 Everything above marked 🔒 depends on one call: **is `Consignment` (legacy

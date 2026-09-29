@@ -12,7 +12,14 @@ class Service extends Model
 {
     use HasFactory;
 
-    public $incrementing = false;
+    // services.id IS a real auto-increment primary key (see the
+    // create_services_table migration). This was incorrectly set to false,
+    // which silently breaks every Service::create() call that doesn't
+    // manually pass an id: Eloquent skips reading the real generated id
+    // back, leaving the in-memory model's id null even though the row was
+    // inserted correctly. 'id' stays in $fillable below so legacy-data
+    // seeders can still assign explicit ids when needed.
+    public $incrementing = true;
     public $timestamps = false;
     
     protected $fillable = [

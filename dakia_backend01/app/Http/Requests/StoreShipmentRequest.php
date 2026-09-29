@@ -25,6 +25,8 @@ class StoreShipmentRequest extends FormRequest
             'consignment' => 'required|array',
             'consignment.customer_id' => 'required|integer',
             'consignment.service_type' => 'required|string',
+            'consignment.carrier_id' => 'required|integer|exists:carriers,id',
+            'consignment.service_id' => 'required|integer|exists:services,id',
             'consignment.warehouse_id' => 'nullable|integer',
             'consignment.reference' => 'required|string|max:50',
             'consignment.notes' => 'nullable|string',

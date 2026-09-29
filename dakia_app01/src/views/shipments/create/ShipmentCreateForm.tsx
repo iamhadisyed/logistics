@@ -65,13 +65,19 @@ export default function ShipmentCreateForm() {
         setSelectedCarrier(carrierId);
         const carrier = carriers.find(c => c.id === parseInt(carrierId));
         setAvailableServices(carrier ? carrier.services : []);
-        setConsignment({ ...consignment, service_type: '' }); // Reset service
+        setConsignment({ ...consignment, service_type: '', service_id: '' }); // Reset service
+    };
+
+    const handleServiceChange = (serviceId: string) => {
+        const service = availableServices.find((s: any) => s.id === parseInt(serviceId));
+        setConsignment({ ...consignment, service_id: serviceId, service_type: service?.name || '' });
     };
 
     // Form State
     const [consignment, setConsignment] = useState({
         customer_id: 148,
         service_type: '',
+        service_id: '',
         reference: '',
         notes: '',
         warehouse_id: 1,
@@ -165,7 +171,8 @@ export default function ShipmentCreateForm() {
     const [labelLoading, setLabelLoading] = useState(false);
 
     const validateForm = (): string | null => {
-        if (!consignment.service_type) return 'Please select a service type';
+        if (!selectedCarrier) return 'Please select a carrier';
+        if (!consignment.service_id) return 'Please select a service';
         if (!consignment.reference) return 'Reference (HAWB) is required';
         if (!consignment.company && !consignment.contact) return 'Company or Contact name is required';
         if (!consignment.telephone) return 'Telephone is required';
@@ -191,6 +198,8 @@ export default function ShipmentCreateForm() {
         consignment: {
             customer_id: Number(consignment.customer_id),
             service_type: consignment.service_type,
+            carrier_id: Number(selectedCarrier),
+            service_id: Number(consignment.service_id),
             warehouse_id: consignment.warehouse_id ? Number(consignment.warehouse_id) : null,
             reference: consignment.reference.trim(),
             notes: consignment.notes?.trim() || null,
@@ -350,12 +359,12 @@ export default function ShipmentCreateForm() {
                                 <FormControl fullWidth required disabled={!selectedCarrier}>
                                     <InputLabel>Service</InputLabel>
                                     <Select
-                                        value={consignment.service_type}
+                                        value={consignment.service_id}
                                         label="Service"
-                                        onChange={(e) => setConsignment({ ...consignment, service_type: e.target.value as string })}
+                                        onChange={(e) => handleServiceChange(e.target.value as string)}
                                     >
                                         {availableServices.map((service: any) => (
-                                            <MenuItem key={service.id} value={service.name}>
+                                            <MenuItem key={service.id} value={service.id}>
                                                 {service.name}
                                             </MenuItem>
                                         ))}
