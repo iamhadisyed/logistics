@@ -164,10 +164,23 @@ reports are NOT yet ported).
 - The user has NOT yet shared his own full written description of "the main
   idea" for comparison against the findings in section 4. If he provides it,
   compare it point-by-point and flag mismatches.
-- **Current focus**: Tariffs & Pricing (`app/Services/PricingEngine.php`) —
-  it exists and has real surcharge/insurance math, but `getBaseRate()` and
-  `getRemoteAreaCharge()` are still hardcoded stubs, and it's built against
-  the deprecated `Consignment` model rather than `Shipment`.
+- **A priority order is now set** in `MODULE_COMPLETION_TRACKER.md` (Tier 1
+  = core booking/revenue path, down to Tier 6 = low-priority content).
+  Work executes top-down against that list — check it for current status
+  before assuming what's next.
+- Tariffs & Pricing (Tier 1.3) is done: `PricingEngine` does a real
+  weight-banded tariff lookup (zone via `carrier_zones`/
+  `carrier_zones_countries`, rate via `tariffs`/`tariffs_details`) against
+  `Shipment`, wired into the actual booking flow, throws
+  `TariffNotConfiguredException` rather than faking a price. Current work:
+  Tier 1.4 (Carriers/Services test coverage), currently blocked by a real
+  403 authorization bug affecting every `ServiceControllerTest` test.
+- **Important lesson learned, apply it going forward**: `db_full_schema.json`
+  at the backend root is an actual column-level dump of the real legacy
+  database. Check it BEFORE inferring a table's real columns from legacy PHP
+  form-field usage — an earlier "fix" (adding `carriers.is_pallet`) turned
+  out to be wrong because that check wasn't done first, and had to be
+  reverted with a corrective migration. Don't repeat that mistake.
 
 ## 7. Local dev environment notes
 

@@ -51,10 +51,16 @@ class Service extends Model
         'max_length',
         'max_width',
         'max_height',
-        'max_weight',
         'max_volumetric_weight',
-        'tracking_flag',
         'insurance_available',
+        // NOTE: 'max_weight' and 'tracking_flag' were here before but are
+        // fabricated — confirmed against db_full_schema.json (the real
+        // legacy schema dump): the real `services` table has no such
+        // columns. Legacy code only ever calls a computed getMaxWeight()
+        // (definition not found under logistic/main/ or logistic/Classes/
+        // in a reasonable search — likely a magic accessor); tracking is
+        // already covered by the real 'is_untrack' column below. Removed
+        // rather than kept as dead/broken fields.
     ];
 
     protected $casts = [
@@ -62,11 +68,9 @@ class Service extends Model
         'is_customized' => 'boolean',
         'is_untrack' => 'boolean',
         'is_eori_required' => 'boolean',
-        'tracking_flag' => 'boolean',
         'insurance_available' => 'boolean',
         'from_weight' => 'decimal:2',
         'to_weight' => 'decimal:2',
-        'max_weight' => 'decimal:2',
         'fuel_surcharge' => 'decimal:2',
         'volumetric_denominator' => 'integer',
     ];

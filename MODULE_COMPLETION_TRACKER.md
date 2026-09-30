@@ -33,9 +33,9 @@ context even though no more work is queued on them right now.
    (accurate invoices, sales reporting, agent commissions) is trustworthy
    until real prices are calculated instead of `PricingEngine`'s hardcoded
    `10.00`/`5.00` stubs.
-4. Carriers, Services & Routing — Built (untested). Needs test coverage next
-   (blocked partly by the still-unresolved `services.max_weight` schema
-   question — module 8 note).
+4. Carriers, Services & Routing — Built (untested). The `services.max_weight`
+   schema question is resolved now (see below) — next real blocker is a
+   403 authorization bug affecting every `ServiceControllerTest` test.
 
 **Tier 2 — Operational necessities (can't run the business day-to-day without these)**
 5. Manifest (handoff to carriers)
@@ -134,25 +134,29 @@ run: **44 failed / 12 passed** out of 56 existing tests. `phpunit.xml` is still
 hardcoded to a MySQL DB that doesn't exist here — tests are run with an inline
 `DB_CONNECTION=sqlite` override instead, matching your app's actual default.
 
-### Real bugs found and fixed by actually running tests
-- **`carriers` table was missing `is_pallet`** — a genuine legacy column
-  (confirmed present in `logistic/main/carrier.php` legacy UI) that the
-  original schema-restore migration simply left out, even though the
-  `Carrier` model, `CarrierController` validation, and `CarrierFactory` all
-  already expected it. Added via a new migration
-  (`2026_09_29_200118_add_is_pallet_to_carriers_table.php`), additive only —
-  did not touch any existing legacy column. **Result: 44 failed → 37 failed,
-  12 passed → 19 passed.**
+### ⚠️ CORRECTION (2026-09-30): the `is_pallet` fix below was WRONG
+`db_full_schema.json` (an actual column-level dump of the real legacy
+database, already sitting in the repo — should have checked this FIRST
+instead of inferring from PHP form-field usage) shows the real `carriers`
+table has 15 columns and **no `is_pallet`**. The real "pallet carrier"
+concept lives in a separate `pallet_carriers` lookup table instead. Reverted
+via a new corrective migration
+(`2026_09_30_031227_remove_fabricated_is_pallet_from_carriers_table.php` —
+never rewrote the already-pushed migration, added a follow-up instead) and
+removed from `Carrier` model/`CarrierController`/`CarrierFactory`. Lesson
+applied immediately below: checked `db_full_schema.json` before touching
+`services.max_weight`/`tracking_flag` this time, instead of guessing again.
 
-### Real issues found, NOT yet fixed (need more care before touching schema)
-- **`services` table may be missing `max_weight` / `tracking_flag`** —
-  `ServiceFactory`/`Service` model expect them, migration doesn't have them.
-  Unlike `is_pallet`, these are ambiguous: `max_weight` appears in legacy code
-  only as a computed getter (`getMaxWeight()`), not confirmed as a literal
-  legacy DB column, and the real legacy table already has
-  `max_length`/`max_width`/`max_height`/`max_volumetric_weight`. Adding a
-  column here risks inventing a field that never existed in your real
-  database — did not do it without checking the real legacy data first.
+### Real bugs found and fixed by actually running tests
+- ~~`carriers` table was missing `is_pallet`~~ — **this "fix" was itself
+  wrong, see correction above.**
+- **`services.max_weight` / `tracking_flag` — CONFIRMED fabricated, not
+  ambiguous anymore.** Checked `db_full_schema.json`: the real `services`
+  table has 79 columns and neither of these exists. Removed from `Service`
+  model `$fillable`/`$casts` and `ServiceFactory`; added the real NOT-NULL
+  columns the factory was missing instead (`fuel_surcharge_type`,
+  `max_length`, `max_width`, `max_height`). **Result: 31 failed/36 passed →
+  28 failed/39 passed**, zero regressions.
 - **Stale test assertions use singular table names** (`carrier`, `country`)
   that don't match the real plural tables (`carriers`, `countries`). This is
   a bug in the *test files themselves*, not the schema — lower priority,
@@ -166,16 +170,18 @@ hardcoded to a MySQL DB that doesn't exist here — tests are run with an inline
   2026-09-29**: `tests/Feature/Api/ShipmentControllerTest.php` added, 9/9
   passing, including a real full-flow integration test and a real PDF-content
   assertion.
-- **New, found while re-running the full suite**: `ServiceControllerTest > it
-  can create a service` fails with 403 (expected 201) — an authorization bug
-  unrelated to my label-generation change (was already failing before it,
-  just masked by the `max_weight` QueryException on the same test file).
-  Not yet root-caused.
+- **All 7 `ServiceControllerTest` tests now fail with 403** (not just one) —
+  now that the schema noise is gone, this is clearly a single real
+  authorization bug affecting every Service route in tests, not a one-off.
+  Not yet root-caused — next thing to look at for Tier 1.4.
+- Stale test assertions using singular table names (`carrier`, `country`)
+  and Consignment-module test failures remain as noted above — unaffected
+  by this pass, still low-priority/expected.
 
 ### Running total after this pass
-**44 failed / 12 passed → 37 failed / 28 passed** (net: 16 more tests passing,
-zero regressions — verified by re-running the full suite, not just the
-Shipment tests, after each change).
+44 failed/12 passed → 37 failed/28 passed → 31 failed/36 passed (Tariffs
+pass) → **28 failed/39 passed** (this correction), zero regressions at each
+step — full suite re-run every time, not just the changed tests.
 
 ### Continued (same day): real carrier/service linkage + a second real bug
 Started implementing real `getBaseRate()` tariff lookup for `PricingEngine`

@@ -36,9 +36,14 @@ class ServiceFactory extends Factory
             'is_untrack' => false,
             'is_eori_required' => false,
             'delivery_type' => 'all',
-            'max_weight' => 30,
-            'tracking_flag' => true,
             'insurance_available' => true,
+            // Real legacy NOT NULL columns with no default (confirmed
+            // against db_full_schema.json) — omitting these is what broke
+            // every ServiceControllerTest/CarrierTest that touched services.
+            'fuel_surcharge_type' => 'p',
+            'max_length' => 100,
+            'max_width' => 100,
+            'max_height' => 100,
         ];
     }
 }
