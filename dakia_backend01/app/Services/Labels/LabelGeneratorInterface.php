@@ -2,22 +2,24 @@
 
 namespace App\Services\Labels;
 
-use App\Models\Consignment;
+use App\Models\Shipment;
 
 /**
  * LabelGeneratorInterface
- * 
- * Interface that all carrier label generators must implement
+ *
+ * Interface that all carrier label generators must implement.
+ * Targets Shipment (the authoritative booking model, per 2026-09-29
+ * decision) rather than the deprecated legacy Consignment model.
  */
 interface LabelGeneratorInterface
 {
     /**
-     * Generate label PDF for a consignment
-     * 
-     * @param Consignment $consignment
-     * @return string Path to generated PDF file
+     * Generate label PDF for a shipment
+     *
+     * @param Shipment $shipment
+     * @return string Storage-relative path to the generated PDF file
      */
-    public function generateLabel(Consignment $consignment): string;
+    public function generateLabel(Shipment $shipment): string;
 
     /**
      * Get drop-off locations for a postcode

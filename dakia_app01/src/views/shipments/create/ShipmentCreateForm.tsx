@@ -65,13 +65,19 @@ export default function ShipmentCreateForm() {
         setSelectedCarrier(carrierId);
         const carrier = carriers.find(c => c.id === parseInt(carrierId));
         setAvailableServices(carrier ? carrier.services : []);
-        setConsignment({ ...consignment, service_type: '' }); // Reset service
+        setConsignment({ ...consignment, service_type: '', service_id: '' }); // Reset service
+    };
+
+    const handleServiceChange = (serviceId: string) => {
+        const service = availableServices.find((s: any) => s.id === parseInt(serviceId));
+        setConsignment({ ...consignment, service_id: serviceId, service_type: service?.name || '' });
     };
 
     // Form State
     const [consignment, setConsignment] = useState({
         customer_id: 148,
         service_type: '',
+        service_id: '',
         reference: '',
         notes: '',
         warehouse_id: 1,
@@ -162,184 +168,147 @@ export default function ShipmentCreateForm() {
         }
     };
 
-    const handleSubmit = async (e: React.FormEvent) => {
-        e.preventDefault();
-        setLoading(true);
+    const [labelLoading, setLabelLoading] = useState(false);
+
+    const validateForm = (): string | null => {
+        if (!selectedCarrier) return 'Please select a carrier';
+        if (!consignment.service_id) return 'Please select a service';
+        if (!consignment.reference) return 'Reference (HAWB) is required';
+        if (!consignment.company && !consignment.contact) return 'Company or Contact name is required';
+        if (!consignment.telephone) return 'Telephone is required';
+        if (!consignment.address_line_1) return 'Address Line 1 is required';
+        if (!consignment.city) return 'City is required';
+        if (!consignment.postcode) return 'Postcode is required';
+        if (!consignment.country_id) return 'Country is required';
+
+        if (parcels.length === 0) return 'At least one parcel is required';
+
+        for (let i = 0; i < parcels.length; i++) {
+            const parcel = parcels[i];
+            if (!parcel.weight || parcel.weight <= 0) return `Parcel ${i + 1}: Weight must be greater than 0`;
+            if (!parcel.length || parcel.length <= 0) return `Parcel ${i + 1}: Length must be greater than 0`;
+            if (!parcel.width || parcel.width <= 0) return `Parcel ${i + 1}: Width must be greater than 0`;
+            if (!parcel.height || parcel.height <= 0) return `Parcel ${i + 1}: Height must be greater than 0`;
+        }
+
+        return null;
+    };
+
+    const buildPayload = () => ({
+        consignment: {
+            customer_id: Number(consignment.customer_id),
+            service_type: consignment.service_type,
+            carrier_id: Number(selectedCarrier),
+            service_id: Number(consignment.service_id),
+            warehouse_id: consignment.warehouse_id ? Number(consignment.warehouse_id) : null,
+            reference: consignment.reference.trim(),
+            notes: consignment.notes?.trim() || null,
+            // Receiver
+            company: consignment.company?.trim() || consignment.contact?.trim() || '',
+            contact: consignment.contact?.trim() || '',
+            email: consignment.email?.trim() || null,
+            telephone: consignment.telephone?.trim(),
+            address_line_1: consignment.address_line_1?.trim(),
+            address_line_2: consignment.address_line_2?.trim() || null,
+            address_line_3: consignment.address_line_3?.trim() || null,
+            city: consignment.city?.trim(),
+            state: consignment.state?.trim() || null,
+            postcode: consignment.postcode?.trim(),
+            country_id: Number(consignment.country_id),
+            // Sender (optional)
+            sender_company: consignment.sender_company?.trim() || null,
+            sender_contact: consignment.sender_contact?.trim() || null,
+            sender_email: consignment.sender_email?.trim() || null,
+            sender_telephone: consignment.sender_telephone?.trim() || null,
+            sender_address_line_1: consignment.sender_address_line_1?.trim() || null,
+            sender_address_line_2: consignment.sender_address_line_2?.trim() || null,
+            sender_address_line_3: consignment.sender_address_line_3?.trim() || null,
+            sender_city: consignment.sender_city?.trim() || null,
+            sender_state: consignment.sender_state?.trim() || null,
+            sender_postcode: consignment.sender_postcode?.trim() || null,
+            sender_country_id: consignment.sender_country_id ? Number(consignment.sender_country_id) : null
+        },
+        parcels: parcels.map(p => ({
+            weight: Number(p.weight),
+            length: Number(p.length),
+            width: Number(p.width),
+            height: Number(p.height),
+            notes: p.notes?.trim() || null,
+            items: p.items.map(i => ({
+                description: i.description?.trim() || '',
+                quantity: Number(i.quantity),
+                weight: Number(i.weight),
+                value: Number(i.value)
+            }))
+        }))
+    });
+
+    const extractErrorMessage = (err: any): string => {
+        let errorMessage = 'Failed to create shipment';
+
+        if (err.response?.data) {
+            const errorData = err.response.data;
+
+            if (errorData.errors) {
+                const validationErrors = Object.entries(errorData.errors)
+                    .map(([field, messages]: [string, any]) => {
+                        const fieldName = field.replace(/consignment\.|parcels\.\d+\./g, '');
+                        return `${fieldName}: ${Array.isArray(messages) ? messages.join(', ') : messages}`;
+                    })
+                    .join('\n');
+                errorMessage = `Validation errors:\n${validationErrors}`;
+            } else if (errorData.message) {
+                errorMessage = errorData.message;
+
+                if (errorData.error) {
+                    if (typeof errorData.error === 'object') {
+                        errorMessage += `\n\nError Details:\n`;
+                        errorMessage += `File: ${errorData.error.file || 'Unknown'}\n`;
+                        errorMessage += `Line: ${errorData.error.line || 'Unknown'}\n`;
+                        if (process.env.NODE_ENV === 'development' && errorData.error.trace) {
+                            errorMessage += `\nTrace:\n${errorData.error.trace.substring(0, 500)}...`;
+                        }
+                    } else {
+                        errorMessage += `\n\n${errorData.error}`;
+                    }
+                }
+            }
+        } else if (err.message) {
+            errorMessage = err.message;
+        }
+
+        return errorMessage;
+    };
+
+    // "Save Booking" saves the consignment only.
+    // "Generate Label" saves the consignment AND generates its label in the same action.
+    const handleAction = async (action: 'save' | 'generate-label') => {
+        const validationError = validateForm();
+        if (validationError) {
+            setError(validationError);
+            return;
+        }
+
+        const setBusy = action === 'generate-label' ? setLabelLoading : setLoading;
+        setBusy(true);
         setError(null);
 
         try {
-            // Validate required fields
-            if (!consignment.service_type) {
-                setError('Please select a service type');
-                setLoading(false);
-                return;
+            const response = await shipmentApi.store(buildPayload());
+            const newShipment = response.data?.data || response.data;
+            const shipmentId = newShipment?.id;
+
+            if (action === 'generate-label' && shipmentId) {
+                await shipmentApi.generateLabel(shipmentId);
+                router.push(`/shipments/${shipmentId}`);
+            } else {
+                router.push('/shipments');
             }
-
-            if (!consignment.reference) {
-                setError('Reference (HAWB) is required');
-                setLoading(false);
-                return;
-            }
-
-            if (!consignment.company && !consignment.contact) {
-                setError('Company or Contact name is required');
-                setLoading(false);
-                return;
-            }
-
-            if (!consignment.telephone) {
-                setError('Telephone is required');
-                setLoading(false);
-                return;
-            }
-
-            if (!consignment.address_line_1) {
-                setError('Address Line 1 is required');
-                setLoading(false);
-                return;
-            }
-
-            if (!consignment.city) {
-                setError('City is required');
-                setLoading(false);
-                return;
-            }
-
-            if (!consignment.postcode) {
-                setError('Postcode is required');
-                setLoading(false);
-                return;
-            }
-
-            if (!consignment.country_id) {
-                setError('Country is required');
-                setLoading(false);
-                return;
-            }
-
-            // Validate parcels
-            if (parcels.length === 0) {
-                setError('At least one parcel is required');
-                setLoading(false);
-                return;
-            }
-
-            for (let i = 0; i < parcels.length; i++) {
-                const parcel = parcels[i];
-                if (!parcel.weight || parcel.weight <= 0) {
-                    setError(`Parcel ${i + 1}: Weight must be greater than 0`);
-                    setLoading(false);
-                    return;
-                }
-                if (!parcel.length || parcel.length <= 0) {
-                    setError(`Parcel ${i + 1}: Length must be greater than 0`);
-                    setLoading(false);
-                    return;
-                }
-                if (!parcel.width || parcel.width <= 0) {
-                    setError(`Parcel ${i + 1}: Width must be greater than 0`);
-                    setLoading(false);
-                    return;
-                }
-                if (!parcel.height || parcel.height <= 0) {
-                    setError(`Parcel ${i + 1}: Height must be greater than 0`);
-                    setLoading(false);
-                    return;
-                }
-            }
-
-            // Prepare Payload - clean up empty strings and convert to proper types
-            const payload: any = {
-                consignment: {
-                    customer_id: Number(consignment.customer_id),
-                    service_type: consignment.service_type,
-                    warehouse_id: consignment.warehouse_id ? Number(consignment.warehouse_id) : null,
-                    reference: consignment.reference.trim(),
-                    notes: consignment.notes?.trim() || null,
-                    // Receiver
-                    company: consignment.company?.trim() || consignment.contact?.trim() || '',
-                    contact: consignment.contact?.trim() || '',
-                    email: consignment.email?.trim() || null,
-                    telephone: consignment.telephone?.trim(),
-                    address_line_1: consignment.address_line_1?.trim(),
-                    address_line_2: consignment.address_line_2?.trim() || null,
-                    address_line_3: consignment.address_line_3?.trim() || null,
-                    city: consignment.city?.trim(),
-                    state: consignment.state?.trim() || null,
-                    postcode: consignment.postcode?.trim(),
-                    country_id: Number(consignment.country_id),
-                    // Sender (optional)
-                    sender_company: consignment.sender_company?.trim() || null,
-                    sender_contact: consignment.sender_contact?.trim() || null,
-                    sender_email: consignment.sender_email?.trim() || null,
-                    sender_telephone: consignment.sender_telephone?.trim() || null,
-                    sender_address_line_1: consignment.sender_address_line_1?.trim() || null,
-                    sender_address_line_2: consignment.sender_address_line_2?.trim() || null,
-                    sender_address_line_3: consignment.sender_address_line_3?.trim() || null,
-                    sender_city: consignment.sender_city?.trim() || null,
-                    sender_state: consignment.sender_state?.trim() || null,
-                    sender_postcode: consignment.sender_postcode?.trim() || null,
-                    sender_country_id: consignment.sender_country_id ? Number(consignment.sender_country_id) : null
-                },
-                parcels: parcels.map(p => ({
-                    weight: Number(p.weight),
-                    length: Number(p.length),
-                    width: Number(p.width),
-                    height: Number(p.height),
-                    notes: p.notes?.trim() || null,
-                    items: p.items.map(i => ({
-                        description: i.description?.trim() || '',
-                        quantity: Number(i.quantity),
-                        weight: Number(i.weight),
-                        value: Number(i.value)
-                    }))
-                }))
-            };
-
-            await shipmentApi.store(payload);
-            router.push('/shipments');
         } catch (err: any) {
             console.error('Shipment creation error:', err);
-            
-            // Extract detailed error message
-            let errorMessage = 'Failed to create shipment';
-            
-            if (err.response?.data) {
-                const errorData = err.response.data;
-                
-                // Handle validation errors
-                if (errorData.errors) {
-                    const validationErrors = Object.entries(errorData.errors)
-                        .map(([field, messages]: [string, any]) => {
-                            const fieldName = field.replace(/consignment\.|parcels\.\d+\./g, '');
-                            return `${fieldName}: ${Array.isArray(messages) ? messages.join(', ') : messages}`;
-                        })
-                        .join('\n');
-                    errorMessage = `Validation errors:\n${validationErrors}`;
-                } else if (errorData.message) {
-                    errorMessage = errorData.message;
-                    
-                    // Include debug info if available
-                    if (errorData.error) {
-                        if (typeof errorData.error === 'object') {
-                            errorMessage += `\n\nError Details:\n`;
-                            errorMessage += `File: ${errorData.error.file || 'Unknown'}\n`;
-                            errorMessage += `Line: ${errorData.error.line || 'Unknown'}\n`;
-                            if (process.env.NODE_ENV === 'development' && errorData.error.trace) {
-                                errorMessage += `\nTrace:\n${errorData.error.trace.substring(0, 500)}...`;
-                            }
-                        } else {
-                            errorMessage += `\n\n${errorData.error}`;
-                        }
-                    }
-                }
-            } else if (err.message) {
-                errorMessage = err.message;
-            }
-            
-            setError(errorMessage);
+            setError(extractErrorMessage(err));
         } finally {
-            setLoading(false);
+            setBusy(false);
         }
     };
 
@@ -350,9 +319,9 @@ export default function ShipmentCreateForm() {
                 <Button variant="outlined" onClick={() => router.back()}>Cancel</Button>
             </Box>
 
-            {error && <Alert severity="error" sx={{ mb: 3 }}>{error}</Alert>}
+            {error && <Alert severity="error" sx={{ mb: 3, whiteSpace: 'pre-line' }}>{error}</Alert>}
 
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={(e) => e.preventDefault()}>
                 {/* Consignment Details */}
                 <Card sx={{ mb: 3 }}>
                     <CardContent>
@@ -390,12 +359,12 @@ export default function ShipmentCreateForm() {
                                 <FormControl fullWidth required disabled={!selectedCarrier}>
                                     <InputLabel>Service</InputLabel>
                                     <Select
-                                        value={consignment.service_type}
+                                        value={consignment.service_id}
                                         label="Service"
-                                        onChange={(e) => setConsignment({ ...consignment, service_type: e.target.value as string })}
+                                        onChange={(e) => handleServiceChange(e.target.value as string)}
                                     >
                                         {availableServices.map((service: any) => (
-                                            <MenuItem key={service.id} value={service.name}>
+                                            <MenuItem key={service.id} value={service.id}>
                                                 {service.name}
                                             </MenuItem>
                                         ))}
@@ -590,14 +559,25 @@ export default function ShipmentCreateForm() {
                         Add Another Parcel
                     </Button>
                     <Button
-                        type="submit"
-                        variant="contained"
+                        variant="outlined"
                         color="primary"
                         size="large"
                         startIcon={loading ? <CircularProgress size={20} color="inherit" /> : <i className='ri-save-line' />}
-                        disabled={loading}
+                        disabled={loading || labelLoading}
+                        onClick={() => handleAction('save')}
+                        sx={{ mr: 2 }}
                     >
-                        {loading ? 'Submitting...' : 'Submit Shipment'}
+                        {loading ? 'Saving...' : 'Save Booking'}
+                    </Button>
+                    <Button
+                        variant="contained"
+                        color="primary"
+                        size="large"
+                        startIcon={labelLoading ? <CircularProgress size={20} color="inherit" /> : <i className='ri-file-download-line' />}
+                        disabled={loading || labelLoading}
+                        onClick={() => handleAction('generate-label')}
+                    >
+                        {labelLoading ? 'Generating Label...' : 'Generate Label'}
                     </Button>
                 </Box>
             </form>
