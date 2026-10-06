@@ -68,9 +68,21 @@ context even though no more work is queued on them right now.
 22. Countries/Postcodes/Geography (Countries done; postcodes/zones not built)
 23. CMS/Static Pages/Legal/Help/Language management
 
-**Not queued**: frontend template noise (Ecommerce, Invoice demo, Academy,
-Chat, Email, Kanban, Calendar) — recommend deleting rather than building out,
-pending user confirmation.
+**RESOLVED 2026-10-06**: frontend template noise (Ecommerce, Invoice demo,
+Academy, Chat, Email, Kanban, Calendar, the fake Mapbox "Logistics"
+fleet/dashboard, 5 fake dashboards, charts/forms/react-table showcases,
+widget/dialog/wizard examples, FAQ/pricing demo, fake user-profile,
+front-pages marketing site, duplicate auth v1/v2 variants) — deleted, along
+with 4 unregistered fake backend controllers (Academy/Ecommerce/Invoice/
+Pages) and every dead nav link. `package.json` renamed to
+`daakia-logistics-frontend`. See commit `983a2acb`.
+
+**Held pending sign-off** (Users/Permissions/Roles — real features
+currently on template mock data, not demo junk to delete): all three use
+the same static `getUserData()`/`getPermissionsData()` mock. Plan agreed:
+keep the shells, strip the fake sub-tabs (Users' overview/billing-plans/
+connections), wire real calls to `UserController`/`AccountController`/
+`SidebarController` — endpoint shapes to be confirmed before executing.
 
 ## ✅ Decided (2026-09-29): booking schema is `Shipment`
 User decision: **`Shipment` (the new `shipments`/`shipment_parcels`/
