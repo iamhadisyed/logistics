@@ -19,13 +19,28 @@ class ShipmentResource extends JsonResource
             'uuid' => $this->uuid ?? null,
             'customer_id' => $this->customer_id,
             'service_type' => $this->service_type,
+            'carrier_id' => $this->carrier_id ?? null,
+            'service_id' => $this->service_id ?? null,
             'warehouse_id' => $this->warehouse_id ?? null,
             'reference' => $this->reference,
             'notes' => $this->notes ?? null,
             'status' => $this->status ?? 'booked',
             'label_generated' => $this->label_generated ?? false,
             'label_generated_at' => $this->label_generated_at ?? null,
-            'label_url' => $this->label_generated ? ("/labels/LBL-{$this->uuid}.pdf") : null,
+            'label_url' => $this->label_generated ? route('shipments.label.download', $this->id) : null,
+            'total_price' => $this->whenLoaded('charges', function () {
+                return $this->charges->isEmpty() ? null : (float) $this->charges->sum('amount');
+            }),
+            'price_currency' => $this->whenLoaded('charges', function () {
+                return $this->charges->first()?->currency;
+            }),
+            'charges' => $this->whenLoaded('charges', function () {
+                return $this->charges->map(fn ($c) => [
+                    'type' => $c->charge_type,
+                    'amount' => (float) $c->amount,
+                    'description' => $c->description,
+                ]);
+            }),
             'parcels_count' => $this->whenCounted('parcels'),
             'items_count' => $this->whenLoaded('parcels', function() {
                 if (!$this->parcels || $this->parcels->isEmpty()) {

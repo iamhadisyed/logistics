@@ -25,7 +25,6 @@ class CarrierFactory extends Factory
             'is_gazetteer' => false,
             'is_reconcile' => false,
             'on_contract' => true,
-            'is_pallet' => false,
         ];
     }
 }

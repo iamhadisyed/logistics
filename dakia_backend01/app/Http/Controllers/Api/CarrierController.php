@@ -56,7 +56,6 @@ class CarrierController extends Controller
             'is_gazetteer' => 'nullable|boolean',
             'is_reconcile' => 'nullable|boolean',
             'on_contract' => 'nullable|boolean',
-            'is_pallet' => 'nullable|boolean',
         ]);
 
         $carrier = Carrier::create(array_merge($validated, [
@@ -90,7 +89,6 @@ class CarrierController extends Controller
             'is_gazetteer' => 'sometimes|nullable|boolean',
             'is_reconcile' => 'sometimes|nullable|boolean',
             'on_contract' => 'sometimes|nullable|boolean',
-            'is_pallet' => 'sometimes|nullable|boolean',
         ]);
 
         $carrier->update($validated);

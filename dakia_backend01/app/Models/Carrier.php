@@ -27,7 +27,6 @@ class Carrier extends Model
         'is_gazetteer',
         'is_reconcile',
         'on_contract',
-        'is_pallet',
     ];
 
     protected $casts = [
@@ -36,7 +35,6 @@ class Carrier extends Model
         'is_gazetteer' => 'boolean',
         'is_reconcile' => 'boolean',
         'on_contract' => 'boolean',
-        'is_pallet' => 'boolean',
     ];
 
     // Status constants

@@ -27,6 +27,7 @@ Route::middleware(['auth:sanctum'])->group(function () {
     // Shipment routes
     Route::apiResource('shipments', \App\Http\Controllers\Api\ShipmentController::class);
     Route::post('shipments/{id}/generate-label', [\App\Http\Controllers\Api\ShipmentController::class, 'generateLabel']);
+    Route::get('shipments/{id}/label', [\App\Http\Controllers\Api\ShipmentController::class, 'downloadLabel'])->name('shipments.label.download');
     
     // Dynamic Sidebar
     Route::get('sidebar', [\App\Http\Controllers\Api\SidebarController::class, 'getSidebar']);
