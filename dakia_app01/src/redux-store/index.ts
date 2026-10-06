@@ -1,19 +1,12 @@
 // Third-party Imports
 import { configureStore } from '@reduxjs/toolkit'
 
-// Slice Imports
-import chatReducer from '@/redux-store/slices/chat'
-import calendarReducer from '@/redux-store/slices/calendar'
-import kanbanReducer from '@/redux-store/slices/kanban'
-import emailReducer from '@/redux-store/slices/email'
-
+// All slices here (chat/calendar/kanban/email) backed deleted template demo
+// apps and were removed along with them. Nothing in the real app currently
+// uses Redux — this store is kept empty so ReduxProvider doesn't break
+// until/unless a real feature needs it.
 export const store = configureStore({
-  reducer: {
-    chatReducer,
-    calendarReducer,
-    kanbanReducer,
-    emailReducer
-  },
+  reducer: {},
   middleware: getDefaultMiddleware => getDefaultMiddleware({ serializableCheck: false })
 })
 
